@@ -1,10 +1,12 @@
 import React from "react";
-import { Button, View, Text } from "react-native";
+import { View, Text } from "react-native";
 
-export default function Home() {
+const AccountPage = () => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home</Text>
+      <Text>Account</Text>
     </View>
   );
-}
+};
+
+export default AccountPage;
