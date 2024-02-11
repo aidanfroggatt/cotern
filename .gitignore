@@ -3,6 +3,7 @@
 # firebase
 google-services.json
 GoogleService-Info.plist
+firebaseConfig.js
 
 # dependencies
 node_modules/
