@@ -4,27 +4,24 @@ import Button from '../components/Button';
 import { colours } from '../styles/Colours';
 
 const SignupPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
 
-  const handleNameChange = (text) => {
-    setName(text);
-  };
-
-  const handleEmailChange = (text) => {
-    setEmail(text);
-  };
-
-  const handlePasswordChange = (text) => {
-    setPassword(text);
+  const handleInputChange = (name, value) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleCreateAccount = () => {
     console.log('Create Account pressed');
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password)
+    console.log('Name:', formData.name);
+    console.log('Email:', formData.email);
+    console.log('Password:', formData.password)
   };
 
   return (
@@ -34,22 +31,22 @@ const SignupPage = () => {
       <TextInput
         style={styles.input}
         placeholder="Name"
-        value={name}
-        onChangeText={handleNameChange}
+        value={formData.name}
+        onChangeText={(text) => handleInputChange('name', text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Email"
         keyboardType="email-address"
-        value={email}
-        onChangeText={handleEmailChange}
+        value={formData.email}
+        onChangeText={(text) => handleInputChange('email', text)}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         secureTextEntry={true}
-        value={password}
-        onChangeText={handlePasswordChange}
+        value={formData.password}
+        onChangeText={(text) => handleInputChange('password', text)}
       />
       <Button title="Create Account" onPress={handleCreateAccount} />
       <TouchableOpacity onPress={() => console.log("redirecting...")}>
