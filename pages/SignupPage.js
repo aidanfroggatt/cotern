@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import Button from '../components/Button';
+import { colours } from '../styles/Colours';
 
 const SignupPage = () => {
   const [name, setName] = useState('');
@@ -76,14 +77,14 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: colours.input_background,
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 5,
     marginBottom: 10,
   },
   link: {
-    color: '#007bff',
+    color: colours.accent,
   },
 });
 
