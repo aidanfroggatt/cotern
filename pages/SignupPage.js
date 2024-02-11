@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   },
   link: {
     color: colours.accent,
+    marginTop: 20,
   },
 });
 
