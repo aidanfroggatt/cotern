@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { colours } from '../styles/Colours';
 
 const Button = ({ onPress, title, buttonStyle, textStyle }) => {
   return (
@@ -11,7 +12,7 @@ const Button = ({ onPress, title, buttonStyle, textStyle }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#007bff',
+    backgroundColor: colours.accent,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 5,
