@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+
 import Button from '../components/Button';
 import { colours } from '../styles/Colours';
+
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { myAuth } from '../firebaseConfig';
+
 import { useNavigation } from '@react-navigation/native';
 
 const LoginPage = () => {
