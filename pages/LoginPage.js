@@ -50,7 +50,7 @@ const LoginPage = () => {
                 onChangeText={(text) => handleInputChange('password', text)}
             />
             <Button title="Login" onPress={handleLogin} />
-            <TouchableOpacity onPress={() => console.log("redirecting...")}>
+            <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                 <Text style={[styles.subtitle, styles.link]}>Don't have an account? Sign up</Text>
             </TouchableOpacity>
         </View>

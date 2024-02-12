@@ -58,7 +58,7 @@ const SignupPage = () => {
 			onChangeText={(text) => handleInputChange('password', text)}
 		/>
 		<Button title="Create Account" onPress={handleCreateAccount} />
-		<TouchableOpacity onPress={() => console.log("redirecting...")}>
+		<TouchableOpacity onPress={() => navigation.navigate('Login')}>
 			<Text style={[styles.subtitle, styles.link]}>Already have an account?</Text>
 		</TouchableOpacity>
     </View>
