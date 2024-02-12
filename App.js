@@ -12,9 +12,9 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Login">
-                <Stack.Screen name="Home" component={HomePage}/>
-                <Stack.Screen name="Login" component={LoginPage} />
-                <Stack.Screen name="Signup" component={SignupPage} />
+                <Stack.Screen options={{headerShown: false}} name="Home" component={HomePage}/>
+                <Stack.Screen options={{headerShown: false}} name="Login" component={LoginPage} />
+                <Stack.Screen options={{headerShown: false}} name="Signup" component={SignupPage} />
             </Stack.Navigator>
         </NavigationContainer>
     );
