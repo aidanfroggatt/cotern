@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import Button from '../components/Button';
 import { colours } from '../styles/Colours';
+import { myAuth } from '../firebaseConfig';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -17,13 +19,15 @@ const SignupPage = () => {
     });
   };
 
-  const handleCreateAccount = () => {
-    console.log('Create Account pressed');
-    console.log('Name:', formData.name);
-    console.log('Email:', formData.email);
-    console.log('Password:', formData.password)
+  const handleCreateAccount = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(myAuth, formData.email, formData.password);
+      console.log('User created!');
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
   };
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create Account</Text>
