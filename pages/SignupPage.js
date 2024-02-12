@@ -29,7 +29,7 @@ const SignupPage = () => {
     const handleCreateAccount = async () => {
 		try {
 			const userCredential = await createUserWithEmailAndPassword(myAuth, formData.email, formData.password);
-			console.log('User created!');
+			console.log('User created account!');
 			navigation.navigate('Home');
 		} catch (error) {
 			console.error('Error creating user:', error);
