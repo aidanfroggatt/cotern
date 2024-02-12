@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import Button from '../components/Button';
 import { useNavigation } from '@react-navigation/native';
+import { colours } from '../styles/Colours';
 
 const LandingPage = () => {
     const navigation = useNavigation();
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 16,
-        color: '#007BFF', // Adjust color as needed
+        color: colours.accent,
         marginTop: 20,
     },
 });
