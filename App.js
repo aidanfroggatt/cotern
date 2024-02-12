@@ -1,13 +1,21 @@
-import { View, Text } from 'react-native';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
 
     return (
-        <LoginPage/>
-        // <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        //     <Text>Hi</Text>
-        // </View>
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Login">
+                <Stack.Screen name="Home" component={HomePage}/>
+                <Stack.Screen name="Login" component={LoginPage} />
+                <Stack.Screen name="Signup" component={SignupPage} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 };
