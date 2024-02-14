@@ -25,7 +25,6 @@ const LoginPage = () => {
         try {
             await signIn(formData.email, formData.password);
             console.log('User logged in!');
-            navigation.navigate('Home');
         } catch (error) {
             console.error('Error logging in:', error);
         }

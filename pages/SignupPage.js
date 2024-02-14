@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-
 import Button from '../components/Button';
 import { colours } from '../styles/Colours';
-
-import { myAuth } from '../firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../contexts/AuthContext';
 
 const SignupPage = () => {
 
+	const { signUp } = useAuth();
 	const navigation = useNavigation();
-
     const [formData, setFormData] = useState({
-		name: '',
 		email: '',
 		password: '',
     });
@@ -28,9 +23,8 @@ const SignupPage = () => {
 
     const handleCreateAccount = async () => {
 		try {
-			const userCredential = await createUserWithEmailAndPassword(myAuth, formData.email, formData.password);
+			await signUp(formData.email, formData.password);
 			console.log('User created account!');
-			navigation.navigate('Home');
 		} catch (error) {
 			console.error('Error creating user:', error);
 		}
@@ -40,12 +34,6 @@ const SignupPage = () => {
     <View style={styles.container}>
 		<Text style={styles.title}>Create Account</Text>
 		<Text style={styles.subtitle}>Connect with other co-op students now!</Text>
-		<TextInput
-			style={styles.input}
-			placeholder="Name"
-			value={formData.name}
-			onChangeText={(text) => handleInputChange('name', text)}
-		/>
 		<TextInput
 			style={styles.input}
 			placeholder="Email"

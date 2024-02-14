@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { myAuth } from '../firebaseConfig';
+import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const AuthContext = createContext();
 
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     try {
-      await myAuth.signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(myAuth, email, password);
     } catch (error) {
       console.error(error);
     }
@@ -25,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     try {
-      await myAuth.signOut();
+      await signOut(myAuth);
     } catch (error) {
       console.error(error);
     }
@@ -33,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   const signUp = async (email, password) => {
     try {
-      await myAuth.createUserWithEmailAndPassword(email, password);
+      await createUserWithEmailAndPassword(myAuth, email, password);
     } catch (error) {
       console.error(error);
     }
