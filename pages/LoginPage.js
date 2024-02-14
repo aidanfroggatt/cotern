@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-
 import Button from '../components/Button';
 import { colours } from '../styles/Colours';
-
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { myAuth } from '../firebaseConfig';
-
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../contexts/AuthContext';
 
 const LoginPage = () => {
 
+    const { signIn } = useAuth();
     const navigation = useNavigation();
-
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -27,7 +23,7 @@ const LoginPage = () => {
 
     const handleLogin = async () => {
         try {
-            await signInWithEmailAndPassword(myAuth, formData.email, formData.password);
+            await signIn(formData.email, formData.password);
             console.log('User logged in!');
             navigation.navigate('Home');
         } catch (error) {
