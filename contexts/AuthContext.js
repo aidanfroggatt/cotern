@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { myAuth } from '../firebaseConfig';
-import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signOut as firebaseSignout, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const AuthContext = createContext();
 
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     try {
-      await signOut(myAuth);
+      await firebaseSignout(myAuth);
     } catch (error) {
       console.error(error);
     }
