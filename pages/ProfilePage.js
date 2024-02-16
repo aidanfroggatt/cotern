@@ -4,24 +4,24 @@ import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/Button';
 
 const ProfilePage = () => {
-  const { currentUser, signOut } = useAuth();
+	const { currentUser, signOut } = useAuth();
 
-  const handleSignOut = async () => {
-    try {
-    	await signOut();
-    	console.log('User signed out');
-    } catch (error) {
-      	console.error('Error signing out:', error);
-    }
-  };
+	const handleSignOut = async () => {
+		try {
+			await signOut();
+			console.log('User signed out');
+		} catch (error) {
+			console.error('Error signing out:', error);
+		}
+	};
 
-  return (
-    <View style={styles.container}>
-		<Text style={styles.title}>Profile</Text>
-		<Text>Email: {currentUser.email}</Text>
-		<Button title="Sign Out" onPress={handleSignOut} />
-    </View>
-  );
+	return (
+		<View style={styles.container}>
+			<Text style={styles.title}>Profile</Text>
+			<Text>Email: {currentUser.email}</Text>
+			<Button title="Sign Out" onPress={handleSignOut} />
+		</View>
+	);
 };
 
 const styles = StyleSheet.create({
