@@ -9,23 +9,29 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 const Tab = createBottomTabNavigator();
 
-const AppNavigation = () => {
+const AuthenticatedNavigation = () => (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomePage} />
+    </Tab.Navigator>
+  );
+  
+  const UnauthenticatedNavigation = () => (
+    <Tab.Navigator>
+      <Tab.Screen name="Landing" component={LandingPage} />
+      <Tab.Screen name="Login" component={LoginPage} />
+      <Tab.Screen name="Signup" component={SignupPage} />
+    </Tab.Navigator>
+  );
+  
+  const AppNavigation = () => {
     const { currentUser } = useAuth();
+  
     return (
         <>
-            {
-                currentUser && (
-                    <Tab.Navigator>
-                        <Tab.Screen name="Landing" component={LandingPage} />
-                        <Tab.Screen name="Home" component={HomePage} />
-                        <Tab.Screen name="Login" component={LoginPage} />
-                        <Tab.Screen name="Signup" component={SignupPage} />
-                    </Tab.Navigator>
-                ) 
-            }
+            {currentUser ? <AuthenticatedNavigation /> : <UnauthenticatedNavigation />}
         </>
     );
-}
+};
 
 export default function App() {
     return (
