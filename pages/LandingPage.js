@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import Button from '../components/Button';
 import { useNavigation } from '@react-navigation/native';
-import { colours } from '../styles/Colours';
+import { colours } from '../styles/ColoursStyle';
 
 const LandingPage = () => {
     const navigation = useNavigation();
