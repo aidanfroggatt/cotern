@@ -25,21 +25,21 @@ const ProfilePage = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 30,
-  },
-  title: {
-	fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    marginBottom: 20,
-  },
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		paddingHorizontal: 30,
+	},
+	title: {
+		fontSize: 24,
+		fontWeight: 'bold',
+		marginBottom: 10,
+	},
+	subtitle: {
+		fontSize: 16,
+		marginBottom: 20,
+	},
 });
 
 export default ProfilePage;
