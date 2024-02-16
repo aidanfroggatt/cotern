@@ -1,57 +1,67 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { myAuth } from '../firebaseConfig';
+import { myAuth, myFirestore } from '../firebaseConfig';
 import { signOut as firebaseSignout, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { collection, doc, setDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+	const [currentUser, setCurrentUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const unsubscribe = myAuth.onAuthStateChanged(user => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-    return unsubscribe;
-  }, []);
+	useEffect(() => {
+		const unsubscribe = myAuth.onAuthStateChanged(user => {
+			setCurrentUser(user);
+			setLoading(false);
+		});
+		return unsubscribe;
+	}, []);
 
-  const signIn = async (email, password) => {
-    try {
-      await signInWithEmailAndPassword(myAuth, email, password);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const signIn = async (email, password) => {
+		try {
+			await signInWithEmailAndPassword(myAuth, email, password);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  const signOut = async () => {
-    try {
-      await firebaseSignout(myAuth);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const signOut = async () => {
+		try {
+			await firebaseSignout(myAuth);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  const signUp = async (email, password) => {
-    try {
-      await createUserWithEmailAndPassword(myAuth, email, password);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const signUp = async (email, password) => {
+		try {
+			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
+			console.log("User created successfully!", user.uid);
+			
+			const usersCollection = collection(myFirestore, 'users');
+			const userDocRef = doc(usersCollection, user.uid);
+			await setDoc(userDocRef, {
+				email: user.email,
+			});
+			console.log("User document created successfully!");
 
-  return (
-    <AuthContext.Provider
-      value={{
-        currentUser,
-        signIn,
-        signOut,
-        signUp
-      }}
-    >
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+		} catch (error) {
+			console.error("Error creating user:", error);
+		}
+	};
+	  
+
+	return (
+		<AuthContext.Provider
+			value={{
+				currentUser,
+				signIn,
+				signOut,
+				signUp
+			}}>
+			{!loading && children}
+		</AuthContext.Provider>
+	);
 };
 
 export const useAuth = () => useContext(AuthContext);
