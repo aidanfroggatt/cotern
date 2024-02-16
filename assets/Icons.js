@@ -2,6 +2,14 @@ import React from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { IconStyle } from '../styles/IconsStyle';
 
-export const ProfileIcon = () => ( <FontAwesome name="user" size={IconStyle.size}/> );
+const ProfileIcon = ({color}) => ( <FontAwesome name="user" size={IconStyle.size} color={color}/> );
+const HomeIcon = ({color}) => ( <FontAwesome name="home" size={IconStyle.size} color={color}/> );
 
-export const HomeIcon = () => ( <FontAwesome name="home" size={IconStyle.size}/> );
+const withIconColor = (IconComponent) => ({ color, ...props }) => (
+    <IconComponent {...props} color={color} />
+);
+
+export const NavbarProfileIcon = withIconColor(ProfileIcon);
+export const NavbarHomeIcon = withIconColor(HomeIcon);
+
+

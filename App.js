@@ -8,14 +8,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { NavbarHomeIcon, NavbarProfileIcon } from './assets/Icons';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const AuthenticatedNavigation = () => (
-    <BottomTab.Navigator screenOptions={{ headerShown: false }}>
-        <BottomTab.Screen name="Home" component={HomePage} />
-        <BottomTab.Screen name="Profile" component={ProfilePage} />
+    <BottomTab.Navigator 
+        screenOptions={{ headerShown: false,
+                    activeTintColor: 'blue',
+            inactiveTintColor: 'gray',
+        }}>
+        <BottomTab.Screen name="Home" component={HomePage} options={{tabBarIcon:NavbarHomeIcon}}/>
+        <BottomTab.Screen name="Profile" component={ProfilePage} options={{tabBarIcon:NavbarProfileIcon}}/>
     </BottomTab.Navigator>
 );
   
