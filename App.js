@@ -1,13 +1,13 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
-import React  from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { NavbarHomeIcon, NavbarProfileIcon } from './assets/Icons';
 
 const BottomTab = createBottomTabNavigator();
@@ -15,8 +15,9 @@ const Stack = createStackNavigator();
 
 const AuthenticatedNavigation = () => (
     <BottomTab.Navigator 
-        screenOptions={{ headerShown: false,
-                    activeTintColor: 'blue',
+        screenOptions={{
+            headerShown: false,
+            activeTintColor: 'blue',
             inactiveTintColor: 'gray',
         }}>
         <BottomTab.Screen name="Home" component={HomePage} options={{tabBarIcon:NavbarHomeIcon}}/>
