@@ -6,23 +6,25 @@ import ProfilePage from './pages/ProfilePage';
 import React  from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
-const Tab = createBottomTabNavigator();
+const BottomTab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const AuthenticatedNavigation = () => (
-    <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomePage} />
-        <Tab.Screen name="Profile" component={ProfilePage} />
-    </Tab.Navigator>
+    <BottomTab.Navigator screenOptions={{ headerShown: false }}>
+        <BottomTab.Screen name="Home" component={HomePage} />
+        <BottomTab.Screen name="Profile" component={ProfilePage} />
+    </BottomTab.Navigator>
 );
   
   const UnauthenticatedNavigation = () => (
-    <Tab.Navigator>
-        <Tab.Screen name="Landing" component={LandingPage} />
-        <Tab.Screen name="Login" component={LoginPage} />
-        <Tab.Screen name="Signup" component={SignupPage} />
-    </Tab.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Landing" component={LandingPage} />
+        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="Signup" component={SignupPage} />
+    </Stack.Navigator>
   );
   
   const AppNavigation = () => {
