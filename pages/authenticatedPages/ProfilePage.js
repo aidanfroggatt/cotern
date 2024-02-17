@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, TextInput, Image} from 'react-native';
 import { useAuth } from '../../contexts/AuthContext';
 import Button from '../../components/Button';
 import { collection, doc, getDoc } from "firebase/firestore";
 import { myFirestore } from "../../firebaseConfig";
+import TextLink from "../../components/TextLink";
 
 const ProfilePage = () => {
     const { currentUser, logout } = useAuth();
@@ -35,24 +36,16 @@ const ProfilePage = () => {
     };
 
     return (
-        <SafeAreaView className="flex-1 justify-center items-center">
-            <Text style={styles.title}>Profile</Text>
-            <Text>{JSON.stringify(userInfo)}</Text>
-            <Button title="Logout" onPress={handleLogout} />
+        <SafeAreaView className="flex-1 bg-primary">
+            <View className="flex-1 flex my-4">
+                <View className="flex-row justify-center">
+                    <Image source={require("../../assets/illustrations/female-avatar-illustration.png")} resizeMode="resize" style={{width:100, height:100}}/>
+                </View>
+                <Text className="text-secondary font-semibold text-xl text-center">{JSON.stringify(userInfo)}</Text>
+
+            </View>
         </SafeAreaView>
     );
 };
-
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    subtitle: {
-        fontSize: 16,
-        marginBottom: 20,
-    },
-});
 
 export default ProfilePage;
