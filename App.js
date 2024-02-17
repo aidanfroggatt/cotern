@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { ThemeProvider, useTheme } from './contexts/ThemeContext'; // Import ThemeProvider and useTheme
 import CreateAccountPage from './pages/unauthenticatedPages/CreateAccountPage';
 import LoginPage from './pages/unauthenticatedPages/LoginPage';
 import HomePage from './pages/authenticatedPages/HomePage';
@@ -39,11 +38,9 @@ const AppNavigation = () => useAuth().currentUser ? <AuthenticatedNavigation /> 
 export default function App() {
     return (
         <NavigationContainer>
-            <ThemeProvider>
-                <AuthProvider>
-                    <AppNavigation/>
-                </AuthProvider>
-            </ThemeProvider>
+            <AuthProvider>
+                <AppNavigation/>
+            </AuthProvider>
         </NavigationContainer>
     );
 };
