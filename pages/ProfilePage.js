@@ -41,7 +41,9 @@ const ProfilePage = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Profile</Text>
-            <Text>User Info: {JSON.stringify(userInfo)}</Text>
+            {userInfo && Object.entries(userInfo).map(([key, value]) => (
+                <Text key={key}>{key}: {value}</Text>
+            ))}
             <Button title="Sign Out" onPress={handleSignOut} />
         </View>
     );
