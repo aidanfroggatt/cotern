@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import { useAuth } from '../../contexts/AuthContext';
 import Button from '../../components/Button';
 import { collection, doc, getDoc } from "firebase/firestore";
@@ -35,11 +35,11 @@ const ProfilePage = () => {
     };
 
     return (
-        <View className="flex-1 justify-center items-center px-8">
+        <SafeAreaView className="flex-1 justify-center items-center">
             <Text style={styles.title}>Profile</Text>
             <Text>{JSON.stringify(userInfo)}</Text>
             <Button title="Logout" onPress={handleLogout} />
-        </View>
+        </SafeAreaView>
     );
 };
 
