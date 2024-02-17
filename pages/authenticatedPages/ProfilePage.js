@@ -35,7 +35,7 @@ const ProfilePage = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <View className="flex-1 justify-center items-center px-8">
             <Text style={styles.title}>Profile</Text>
             <Text>{JSON.stringify(userInfo)}</Text>
             <Button title="Logout" onPress={handleLogout} />
