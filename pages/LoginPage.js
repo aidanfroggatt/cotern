@@ -24,7 +24,6 @@ const LoginPage = () => {
     const handleLogin = async () => {
         try {
             await loginEmailAndPassword(formData.email, formData.password);
-            console.log('User logged in!');
         } catch (error) {
             console.error('Error logging in:', error);
         }
