@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 	const loginEmailAndPassword = async (email, password) => {
 		try {
 		  	await signInWithEmailAndPassword(myAuth, email, password);
-		  	console.log("User signed in");
+		  	console.log("User logged in");
 		} catch (error) {
 		  	console.error(error);
 		}
@@ -29,13 +29,14 @@ export const AuthProvider = ({ children }) => {
 	const logout = async () => {
 		try {
 			await firebaseLogout(myAuth);
-		  	console.log("User signed out");
+		  	console.log("User logged out");
 		} catch (error) {
 		  	console.error(error);
 		}
 	};
 	  
 	const createAccountEmailAndPassword = async (firstName, lastName, email, password) => {
+		console.log("Creating user with email and password...");
 		try {
 			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
 			console.log("Created user!");
