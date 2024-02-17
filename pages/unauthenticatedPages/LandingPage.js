@@ -1,50 +1,31 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import Button from '../../components/Button';
+import {View, Text, TouchableOpacity, Image, SafeAreaView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { colours } from '../../styles/ColoursStyle';
 
 const LandingPage = () => {
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Cotern</Text>
-            <Image
-                source={require('../../assets/landing-page-image.png')}
-                style={{resizeMode: 'contain', width: '100%', height: 300, marginBottom: 20}}
-            />
-            <Button title="Create Account" onPress={() => navigation.navigate('CreateAccount')} />
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-        </View>
+        <SafeAreaView className="flex-1 bg-white">
+            <View className="flex-1 flex justify-around my-4">
+                <Text className="text-black font-bold text-4xl text-center">Let's get started</Text>
+                <View className="flex-row justify-center">
+                    <Image source={require("../../assets/illustrations/landing-page-illustration.png")} resizeMethod="resize" style={{ width:350, height:350 }}/>
+                </View>
+                <View className="space-y-4">
+                    <TouchableOpacity className="py-3 bg-indigo-500 mx-7 rounded-xl" onPress={() => navigation.navigate('CreateAccount')}>
+                        <Text className="text-xl font-bold text-center text-white">Create Account</Text>
+                    </TouchableOpacity>
+                    <View className="flex-row justify-center">
+                        <Text className="text-black font-semibold">Already have an account?</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+                            <Text className="font-semibold text-indigo-500"> Login</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
+        </SafeAreaView>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 30,
-    },
-    title: {
-        fontSize: 70,
-        fontWeight: 'bold',
-        marginBottom: 10,
-        textAlign: 'center',
-    },
-    subtitle: {
-        fontSize: 16,
-        marginBottom: 20,
-        textAlign: 'center',
-    },
-    buttonText: {
-        fontSize: 16,
-        color: colours.accent,
-        marginTop: 20,
-    },
-});
 
 export default LandingPage;
