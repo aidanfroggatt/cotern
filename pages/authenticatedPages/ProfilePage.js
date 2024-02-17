@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, StyleSheet, SafeAreaView, TextInput, Image} from 'react-native';
+import {View, Text, SafeAreaView, Image} from 'react-native';
 import { useAuth } from '../../contexts/AuthContext';
-import Button from '../../components/Button';
+import TextButton from '../../components/TextButton';
 import { collection, doc, getDoc } from "firebase/firestore";
 import { myFirestore } from "../../firebaseConfig";
 import TextLink from "../../components/TextLink";
+import { FontAwesome } from '@expo/vector-icons';
+import UtilityCard from "../../components/UtilityCard";
 
 const ProfilePage = () => {
     const { currentUser, logout } = useAuth();
@@ -35,17 +37,35 @@ const ProfilePage = () => {
         }
     };
 
-    return (
-        <SafeAreaView className="flex-1 bg-primary">
-            <View className="flex-1 flex my-4">
-                <View className="flex-row justify-center">
-                    <Image source={require("../../assets/illustrations/female-avatar-illustration.png")} resizeMode="resize" style={{width:100, height:100}}/>
-                </View>
-                <Text className="text-secondary font-semibold text-xl text-center">{JSON.stringify(userInfo)}</Text>
-
-            </View>
-        </SafeAreaView>
-    );
+   return userInfo ? (
+       <SafeAreaView className="flex-1 bg-primary">
+           <View className="flex-1 flex my-4">
+               <View className="flex-row justify-center">
+                   <Image source={require("../../assets/illustrations/female-avatar-illustration.png")} style={{width:100, height:100}}/>
+               </View>
+               <Text className="text-secondary font-bold text-4xl text-center">
+                   {userInfo.firstName} {userInfo.lastName}
+               </Text>
+               <Text className="text-secondary text-center">Member since: </Text>
+               <View id="personal-info-container" className="m-7">
+                   <Text className="text-secondary font-semibold text-lg">Personal Information</Text>
+                   <View id="card-container" className="flex-col gap-y-1 mt-1">
+                       <UtilityCard title={"Email"} icon={<FontAwesome name="envelope" size={24}/>} />
+                       <UtilityCard title={"Phone"} icon={<FontAwesome name="phone" size={24}/>} />
+                   </View>
+               </View>
+               <View id="utilities-container" className="m-7">
+                   <Text className="text-secondary font-semibold text-lg">Utilities</Text>
+                   <View id="card-container" className="flex-col mt-1">
+                       <UtilityCard title={"Settings"} icon={<FontAwesome name="gear" size={24}/>} />
+                       <UtilityCard title={"Logout"} icon={<FontAwesome name={"sign-out"} size={24}/>} onPress={handleLogout} />
+                   </View>
+               </View>
+           </View>
+       </SafeAreaView>
+   ) : (
+       <></>
+   );
 };
 
 export default ProfilePage;

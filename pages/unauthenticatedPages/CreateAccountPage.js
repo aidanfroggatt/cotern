@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {View, Text, TextInput, SafeAreaView} from 'react-native';
-import Button from '../../components/Button';
+import TextButton from '../../components/TextButton';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/AuthContext';
 import TextLink from "../../components/TextLink";
@@ -64,7 +64,7 @@ const CreateAccountPage = () => {
 					/>
 				</View>
 				<View className="space-y-4 mx-7">
-					<Button onPress={handleCreateAccount} title={"Create Account"}/>
+					<TextButton onPress={handleCreateAccount} title={"Create Account"}/>
 					<View className="flex-row justify-center">
 						<TextLink onPress={() => navigation.navigate("Login")} title={"Already have an account?"}/>
 					</View>
