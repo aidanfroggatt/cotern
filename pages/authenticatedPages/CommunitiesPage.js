@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
+import {Text, SafeAreaView} from "react-native";
 
 const CommunitiesPage = () => {
 	return (
-		<View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+		<SafeAreaView className="flex-1 justify-center items-center">
 			<Text>Communities</Text>
-		</View>
+		</SafeAreaView>
 	);
 };
 
