@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import {View, Text, TextInput, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
+import {View, Text, TextInput, SafeAreaView} from 'react-native';
 import Button from '../../components/Button';
-import { colours } from '../../styles/ColoursStyle';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/AuthContext';
 import TextLink from "../../components/TextLink";
@@ -74,35 +73,5 @@ const CreateAccountPage = () => {
 		</SafeAreaView>
 	);
 };
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		paddingHorizontal: 30,
-	},
-	title: {
-		fontSize: 24,
-		fontWeight: 'bold',
-		marginBottom: 10,
-	},
-	subtitle: {
-		fontSize: 16,
-		marginBottom: 20,
-	},
-	input: {
-		width: '100%',
-		backgroundColor: colours.input_background,
-		paddingVertical: 15,
-		paddingHorizontal: 20,
-		borderRadius: 5,
-		marginBottom: 10,
-	},
-	link: {
-		color: colours.accent,
-		marginTop: 20,
-	},
-});
 
 export default CreateAccountPage;
