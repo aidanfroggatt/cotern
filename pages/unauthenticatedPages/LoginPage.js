@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, SafeAreaView } from 'react-native';
 import Button from '../../components/Button';
-import { colours } from '../../styles/ColoursStyle';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/AuthContext';
+import TextLink from "../../components/TextLink";
 
 const LoginPage = () => {
 
@@ -30,58 +30,34 @@ const LoginPage = () => {
     };
   
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Login</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Email"
-                keyboardType="email-address"
-                value={formData.email}
-                onChangeText={(text) => handleInputChange('email', text)}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Password"
-                secureTextEntry={true}
-                value={formData.password}
-                onChangeText={(text) => handleInputChange('password', text)}
-            />
-            <Button title="Login" onPress={handleLogin} />
-            <TouchableOpacity onPress={() => navigation.navigate('CreateAccount')}>
-                <Text style={[styles.subtitle, styles.link]}>Don't have an account?</Text>
-            </TouchableOpacity>
-        </View>
+        <SafeAreaView className="flex-1 bg-primary">
+            <View className="flex-1 flex justify-center my-4">
+                <Text className="text-secondary font-bold text-4xl text-center">Login</Text>
+                <View className="flex flex-col gap-y-2 m-7">
+                    <TextInput
+                        className="bg-gray-100 p-4 text-secondary rounded-2xl"
+                        placeholder="Email"
+                        keyboardType="email-address"
+                        value={formData.email}
+                        onChangeText={(text) => handleInputChange('email', text)}
+                    />
+                    <TextInput
+                        className="bg-gray-100 p-4 text-secondary rounded-2xl"
+                        placeholder="Password"
+                        secureTextEntry={true}
+                        value={formData.password}
+                        onChangeText={(text) => handleInputChange('password', text)}
+                    />
+                </View>
+                <View className="space-y-4 mx-7">
+                    <Button onPress={handleLogin} title={"Login"}/>
+                    <View className="flex-row justify-center">
+                        <TextLink onPress={() => navigation.navigate("CreateAccount")} title={"Don't have an account?"}/>
+                    </View>
+                </View>
+            </View>
+        </SafeAreaView>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 30,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    subtitle: {
-        fontSize: 16,
-        marginBottom: 20,
-    },
-    input: {
-        width: '100%',
-        backgroundColor: colours.input_background,
-        paddingVertical: 15,
-        paddingHorizontal: 20,
-        borderRadius: 5,
-        marginBottom: 10,
-    },
-    link: {
-        color: colours.accent,
-        marginTop: 20,
-    },
-});
 
 export default LoginPage;

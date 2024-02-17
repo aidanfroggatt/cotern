@@ -14,10 +14,10 @@ const LandingPage = () => {
                 <View className="flex-row justify-center">
                     <Image source={require("../../assets/illustrations/landing-page-illustration.png")} resizeMethod="resize" style={{ width:350, height:350 }}/>
                 </View>
-                <View className="space-y-4">
+                <View className="space-y-4 mx-7">
                     <Button onPress={() => navigation.navigate('CreateAccount')} title={"Create Account"}/>
                     <View className="flex-row justify-center">
-                        <Text className="text-secondary font-semibold">Already have an account?</Text>
+                        <Text className="text-secondary font-semibold">Already have an account? </Text>
                         <TextLink onPress={() => navigation.navigate("Login")} title={"Login"}/>
                     </View>
                 </View>
