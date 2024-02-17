@@ -17,6 +17,18 @@ export const AuthProvider = ({ children }) => {
 		return unsubscribe;
 	}, []);
 
+	const createAccountEmailAndPassword = async (firstName, lastName, email, password) => {
+		console.log("Creating user with email and password...");
+		try {
+			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
+			console.log("Created user!");
+			await setDoc(doc(collection(myFirestore, 'users'), user.uid), { firstName, lastName });
+			console.log("Created user document!");
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	const loginEmailAndPassword = async (email, password) => {
 		try {
 		  	await signInWithEmailAndPassword(myAuth, email, password);
@@ -32,18 +44,6 @@ export const AuthProvider = ({ children }) => {
 		  	console.log("User logged out");
 		} catch (error) {
 		  	console.error(error);
-		}
-	};
-	  
-	const createAccountEmailAndPassword = async (firstName, lastName, email, password) => {
-		console.log("Creating user with email and password...");
-		try {
-			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
-			console.log("Created user!");
-			await setDoc(doc(collection(myFirestore, 'users'), user.uid), { firstName, lastName });
-			console.log("Created user document!");
-		} catch (error) {
-			console.error(error);
 		}
 	};
 
