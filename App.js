@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import CommunitiesPage from './pages/CommunitiesPage';
-import { NavbarHomeIcon, NavbarProfileIcon } from './assets/Icons';
+import { NavbarCommunitiesIcon, NavbarHomeIcon, NavbarProfileIcon } from './assets/Icons';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -22,7 +22,7 @@ const AuthenticatedNavigation = () => (
             inactiveTintColor: 'gray',
         }}>
         <BottomTab.Screen name="Home" component={HomePage} options={{tabBarIcon:NavbarHomeIcon}}/>
-        <BottomTab.Screen name="Communities" component={CommunitiesPage} />
+        <BottomTab.Screen name="Communities" component={CommunitiesPage} options={{tabBarIcon:NavbarCommunitiesIcon}}/>
         <BottomTab.Screen name="Profile" component={ProfilePage} options={{tabBarIcon:NavbarProfileIcon}}/>
     </BottomTab.Navigator>
 );
