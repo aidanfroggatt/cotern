@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext'; // Import ThemeProvider and useTheme
 import CreateAccountPage from './pages/unauthenticatedPages/CreateAccountPage';
 import LoginPage from './pages/unauthenticatedPages/LoginPage';
 import HomePage from './pages/authenticatedPages/HomePage';
@@ -14,18 +15,15 @@ import { NavbarCommunitiesIcon, NavbarHomeIcon, NavbarProfileIcon } from './asse
 const BottomTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const AuthenticatedNavigation = () => (
-    <BottomTab.Navigator 
-        screenOptions={{
-            headerShown: false,
-            activeTintColor: 'blue',
-            inactiveTintColor: 'gray',
-        }}>
-        <BottomTab.Screen name="Home" component={HomePage} options={{tabBarIcon:NavbarHomeIcon}}/>
-        <BottomTab.Screen name="Communities" component={CommunitiesPage} options={{tabBarIcon:NavbarCommunitiesIcon}}/>
-        <BottomTab.Screen name="Profile" component={ProfilePage} options={{tabBarIcon:NavbarProfileIcon}}/>
-    </BottomTab.Navigator>
-);
+const AuthenticatedNavigation = () => {
+    return (
+        <BottomTab.Navigator screenOptions={{ headerShown: false }}>
+            <BottomTab.Screen name="Home" component={HomePage} options={{tabBarIcon:NavbarHomeIcon}}/>
+            <BottomTab.Screen name="Communities" component={CommunitiesPage} options={{tabBarIcon:NavbarCommunitiesIcon}}/>
+            <BottomTab.Screen name="Profile" component={ProfilePage} options={{tabBarIcon:NavbarProfileIcon}}/>
+        </BottomTab.Navigator>
+    );
+};
   
 const UnauthenticatedNavigation = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -41,9 +39,11 @@ const AppNavigation = () => useAuth().currentUser ? <AuthenticatedNavigation /> 
 export default function App() {
     return (
         <NavigationContainer>
-            <AuthProvider>
-                <AppNavigation/>
-            </AuthProvider>
+            <ThemeProvider>
+                <AuthProvider>
+                    <AppNavigation/>
+                </AuthProvider>
+            </ThemeProvider>
         </NavigationContainer>
     );
 };
