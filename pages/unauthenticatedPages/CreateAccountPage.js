@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import {View, Text, TextInput, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native';
 import Button from '../../components/Button';
 import { colours } from '../../styles/ColoursStyle';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/AuthContext';
+import TextLink from "../../components/TextLink";
 
 const CreateAccountPage = () => {
 
@@ -32,40 +33,45 @@ const CreateAccountPage = () => {
     };
   
 	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>Create Account</Text>
-			<Text style={styles.subtitle}>Connect with other co-op students now!</Text>
-			<TextInput
-				style={styles.input}
-				placeholder="First Name"
-				value={formData.firstName}
-				onChangeText={(text) => handleInputChange('firstName', text)}
-			/>
-			<TextInput
-				style={styles.input}
-				placeholder="Last Name"
-				value={formData.lastName}
-				onChangeText={(text) => handleInputChange('lastName', text)}
-			/>
-			<TextInput
-				style={styles.input}
-				placeholder="Email"
-				keyboardType="email-address"
-				value={formData.email}
-				onChangeText={(text) => handleInputChange('email', text)}
-			/>
-			<TextInput
-				style={styles.input}
-				placeholder="Password"
-				secureTextEntry={true}
-				value={formData.password}
-				onChangeText={(text) => handleInputChange('password', text)}
-			/>
-			<Button title="Create Account" onPress={handleCreateAccount} />
-			<TouchableOpacity onPress={() => navigation.navigate('Login')}>
-				<Text style={[styles.subtitle, styles.link]}>Already have an account?</Text>
-			</TouchableOpacity>
-		</View>
+		<SafeAreaView className="flex-1 bg-primary">
+			<View className="flex-1 flex justify-center my-4">
+				<Text className="text-secondary font-bold text-4xl text-center">Create Account</Text>
+				<View className="flex flex-col gap-y-2 m-7">
+					<TextInput
+						className="bg-gray-100 p-4 text-secondary rounded-2xl"
+						placeholder="First Name"
+						value={formData.firstName}
+						onChangeText={(text) => handleInputChange('firstName', text)}
+					/>
+					<TextInput
+						className="bg-gray-100 p-4 text-secondary rounded-2xl"
+						placeholder="Last Name"
+						value={formData.lastName}
+						onChangeText={(text) => handleInputChange('lastName', text)}
+					/>
+					<TextInput
+						className="bg-gray-100 p-4 text-secondary rounded-2xl"
+						placeholder="Email"
+						keyboardType="email-address"
+						value={formData.email}
+						onChangeText={(text) => handleInputChange('email', text)}
+					/>
+					<TextInput
+						className="bg-gray-100 p-4 text-secondary rounded-2xl"
+						placeholder="Password"
+						secureTextEntry={true}
+						value={formData.password}
+						onChangeText={(text) => handleInputChange('password', text)}
+					/>
+				</View>
+				<View className="space-y-4 mx-7">
+					<Button onPress={handleCreateAccount} title={"Create Account"}/>
+					<View className="flex-row justify-center">
+						<TextLink onPress={() => navigation.navigate("Login")} title={"Already have an account?"}/>
+					</View>
+				</View>
+			</View>
+		</SafeAreaView>
 	);
 };
 
