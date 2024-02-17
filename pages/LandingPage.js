@@ -14,7 +14,7 @@ const LandingPage = () => {
                 source={require('../assets/landing-page-image.png')}
                 style={{resizeMode: 'contain', width: '100%', height: 300, marginBottom: 20}}
             />
-            <Button title="Create Account" onPress={() => navigation.navigate('Signup')} />
+            <Button title="Create Account" onPress={() => navigation.navigate('CreateAccount')} />
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>

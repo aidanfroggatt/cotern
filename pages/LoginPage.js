@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const LoginPage = () => {
 
-    const { signIn } = useAuth();
+    const { loginEmailAndPassword } = useAuth();
     const navigation = useNavigation();
     const [formData, setFormData] = useState({
         email: '',
@@ -23,7 +23,7 @@ const LoginPage = () => {
 
     const handleLogin = async () => {
         try {
-            await signIn(formData.email, formData.password);
+            await loginEmailAndPassword(formData.email, formData.password);
             console.log('User logged in!');
         } catch (error) {
             console.error('Error logging in:', error);

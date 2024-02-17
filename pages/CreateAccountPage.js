@@ -5,9 +5,9 @@ import { colours } from '../styles/ColoursStyle';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../contexts/AuthContext';
 
-const SignupPage = () => {
+const CreateAccountPage = () => {
 
-	const { signUpEmailAndPassword } = useAuth();
+	const { createAccountEmailAndPassword } = useAuth();
 	const navigation = useNavigation();
     const [formData, setFormData] = useState({
 		firstName: '',
@@ -25,7 +25,7 @@ const SignupPage = () => {
 
     const handleCreateAccount = async () => {
 		try {
-			await signUpEmailAndPassword(formData.firstName, formData.lastName, formData.email, formData.password);
+			await createAccountEmailAndPassword(formData.firstName, formData.lastName, formData.email, formData.password);
 		} catch (error) {
 			console.error('Error creating user:', error);
 		}
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default SignupPage;
+export default CreateAccountPage;

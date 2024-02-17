@@ -6,7 +6,7 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { myFirestore } from "../firebaseConfig";
 
 const ProfilePage = () => {
-    const { currentUser, signOut } = useAuth();
+    const { currentUser, logout } = useAuth();
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
@@ -26,9 +26,9 @@ const ProfilePage = () => {
 		}
 	};
 	
-	const handleSignOut = async () => {
+	const handleLogout = async () => {
         try {
-            await signOut();
+            await logout();
         } catch (error) {
             console.error('Error signing out:', error);
         }
@@ -38,7 +38,7 @@ const ProfilePage = () => {
         <View style={styles.container}>
             <Text style={styles.title}>Profile</Text>
             <Text>{JSON.stringify(userInfo)}</Text>
-            <Button title="Sign Out" onPress={handleSignOut} />
+            <Button title="Sign Out" onPress={handleLogout} />
         </View>
     );
 };

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { myAuth, myFirestore } from '../firebaseConfig';
-import { signOut as firebaseSignout, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signOut as firebaseLogout, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, doc, setDoc } from 'firebase/firestore';
 
 const AuthContext = createContext();
@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 		return unsubscribe;
 	}, []);
 
-	const signIn = async (email, password) => {
+	const loginEmailAndPassword = async (email, password) => {
 		try {
 		  	await signInWithEmailAndPassword(myAuth, email, password);
 		  	console.log("User signed in");
@@ -26,16 +26,16 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 	  
-	const signOut = async () => {
+	const logout = async () => {
 		try {
-			await firebaseSignout(myAuth);
+			await firebaseLogout(myAuth);
 		  	console.log("User signed out");
 		} catch (error) {
 		  	console.error(error);
 		}
 	};
 	  
-	const signUpEmailAndPassword = async (firstName, lastName, email, password) => {
+	const createAccountEmailAndPassword = async (firstName, lastName, email, password) => {
 		try {
 			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
 			console.log("Created user!");
@@ -50,9 +50,9 @@ export const AuthProvider = ({ children }) => {
 		<AuthContext.Provider
 			value={{
 				currentUser,
-				signIn,
-				signOut,
-				signUpEmailAndPassword
+				loginEmailAndPassword,
+				logout,
+				createAccountEmailAndPassword
 			}}>
 			{!loading && children}
 		</AuthContext.Provider>
