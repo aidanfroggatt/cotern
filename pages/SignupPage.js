@@ -7,9 +7,11 @@ import { useAuth } from '../contexts/AuthContext';
 
 const SignupPage = () => {
 
-	const { signUp } = useAuth();
+	const { signUpEmailAndPassword } = useAuth();
 	const navigation = useNavigation();
     const [formData, setFormData] = useState({
+		firstName: '',
+		lastName: '',
 		email: '',
 		password: '',
     });
@@ -23,7 +25,7 @@ const SignupPage = () => {
 
     const handleCreateAccount = async () => {
 		try {
-			await signUp(formData.email, formData.password);
+			await signUpEmailAndPassword(formData.firstName, formData.lastName, formData.email, formData.password);
 			console.log('User created account!');
 		} catch (error) {
 			console.error('Error creating user:', error);
@@ -34,6 +36,18 @@ const SignupPage = () => {
     <View style={styles.container}>
 		<Text style={styles.title}>Create Account</Text>
 		<Text style={styles.subtitle}>Connect with other co-op students now!</Text>
+		<TextInput
+			style={styles.input}
+			placeholder="First Name"
+			value={formData.firstName}
+			onChangeText={(text) => handleInputChange('firstName', text)}
+		/>
+		<TextInput
+			style={styles.input}
+			placeholder="Last Name"
+			value={formData.lastName}
+			onChangeText={(text) => handleInputChange('lastName', text)}
+		/>
 		<TextInput
 			style={styles.input}
 			placeholder="Email"

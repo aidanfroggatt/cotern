@@ -33,15 +33,15 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
-	const signUp = async (email, password) => {
+	const signUpEmailAndPassword = async (firstName, lastName, email, password) => {
 		try {
 			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
-			console.log("User created successfully!", user.uid);
-			
+			console.log("User created successfully!");			
 			const usersCollection = collection(myFirestore, 'users');
 			const userDocRef = doc(usersCollection, user.uid);
 			await setDoc(userDocRef, {
-				email: user.email,
+				firstName: firstName,
+				lastName: lastName,
 			});
 			console.log("User document created successfully!");
 
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 				currentUser,
 				signIn,
 				signOut,
-				signUp
+				signUpEmailAndPassword
 			}}>
 			{!loading && children}
 		</AuthContext.Provider>
