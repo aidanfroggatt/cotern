@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useAuth } from '../contexts/AuthContext';
-import Button from '../components/Button';
+import { useAuth } from '../../contexts/AuthContext';
+import Button from '../../components/Button';
 import { collection, doc, getDoc } from "firebase/firestore";
-import { myFirestore } from "../firebaseConfig";
+import { myFirestore } from "../../firebaseConfig";
 
 const ProfilePage = () => {
     const { currentUser, logout } = useAuth();

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import { useNavigation } from '@react-navigation/native';
-import { colours } from '../styles/ColoursStyle';
+import { colours } from '../../styles/ColoursStyle';
 
 const LandingPage = () => {
     const navigation = useNavigation();
@@ -11,7 +11,7 @@ const LandingPage = () => {
         <View style={styles.container}>
             <Text style={styles.title}>Cotern</Text>
             <Image
-                source={require('../assets/landing-page-image.png')}
+                source={require('../../assets/landing-page-image.png')}
                 style={{resizeMode: 'contain', width: '100%', height: 300, marginBottom: 20}}
             />
             <Button title="Create Account" onPress={() => navigation.navigate('CreateAccount')} />
