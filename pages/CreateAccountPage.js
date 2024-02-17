@@ -31,42 +31,42 @@ const CreateAccountPage = () => {
 		}
     };
   
-  return (
-    <View style={styles.container}>
-		<Text style={styles.title}>Create Account</Text>
-		<Text style={styles.subtitle}>Connect with other co-op students now!</Text>
-		<TextInput
-			style={styles.input}
-			placeholder="First Name"
-			value={formData.firstName}
-			onChangeText={(text) => handleInputChange('firstName', text)}
-		/>
-		<TextInput
-			style={styles.input}
-			placeholder="Last Name"
-			value={formData.lastName}
-			onChangeText={(text) => handleInputChange('lastName', text)}
-		/>
-		<TextInput
-			style={styles.input}
-			placeholder="Email"
-			keyboardType="email-address"
-			value={formData.email}
-			onChangeText={(text) => handleInputChange('email', text)}
-		/>
-		<TextInput
-			style={styles.input}
-			placeholder="Password"
-			secureTextEntry={true}
-			value={formData.password}
-			onChangeText={(text) => handleInputChange('password', text)}
-		/>
-		<Button title="Create Account" onPress={handleCreateAccount} />
-		<TouchableOpacity onPress={() => navigation.navigate('Login')}>
-			<Text style={[styles.subtitle, styles.link]}>Already have an account?</Text>
-		</TouchableOpacity>
-    </View>
-  );
+	return (
+		<View style={styles.container}>
+			<Text style={styles.title}>Create Account</Text>
+			<Text style={styles.subtitle}>Connect with other co-op students now!</Text>
+			<TextInput
+				style={styles.input}
+				placeholder="First Name"
+				value={formData.firstName}
+				onChangeText={(text) => handleInputChange('firstName', text)}
+			/>
+			<TextInput
+				style={styles.input}
+				placeholder="Last Name"
+				value={formData.lastName}
+				onChangeText={(text) => handleInputChange('lastName', text)}
+			/>
+			<TextInput
+				style={styles.input}
+				placeholder="Email"
+				keyboardType="email-address"
+				value={formData.email}
+				onChangeText={(text) => handleInputChange('email', text)}
+			/>
+			<TextInput
+				style={styles.input}
+				placeholder="Password"
+				secureTextEntry={true}
+				value={formData.password}
+				onChangeText={(text) => handleInputChange('password', text)}
+			/>
+			<Button title="Create Account" onPress={handleCreateAccount} />
+			<TouchableOpacity onPress={() => navigation.navigate('Login')}>
+				<Text style={[styles.subtitle, styles.link]}>Already have an account?</Text>
+			</TouchableOpacity>
+		</View>
+	);
 };
 
 const styles = StyleSheet.create({
