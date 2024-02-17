@@ -18,8 +18,8 @@ export const AuthProvider = ({ children }) => {
 	}, []);
 
 	const createAccountEmailAndPassword = async (firstName, lastName, email, password) => {
-		console.log("Creating user with email and password...");
 		try {
+			console.log("Creating user with email and password...");
 			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
 			console.log("Created user!");
 			await setDoc(doc(collection(myFirestore, 'users'), user.uid), { firstName, lastName });
