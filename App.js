@@ -10,13 +10,17 @@ import LandingPage from './pages/unauthenticatedPages/LandingPage';
 import ProfilePage from './pages/authenticatedPages/ProfilePage';
 import CommunitiesPage from './pages/authenticatedPages/CommunitiesPage';
 import { NavbarCommunitiesIcon, NavbarHomeIcon, NavbarProfileIcon } from './assets/Icons';
-
 const BottomTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const AuthenticatedNavigation = () => {
     return (
-        <BottomTab.Navigator screenOptions={{ headerShown: false }}>
+        <BottomTab.Navigator
+            screenOptions={{
+                headerShown: false,
+                tabBarActiveTintColor: "#6366f1",
+                tabBarInactiveTintColor: "#000000",
+        }}>
             <BottomTab.Screen name="Home" component={HomePage} options={{tabBarIcon:NavbarHomeIcon}}/>
             <BottomTab.Screen name="Communities" component={CommunitiesPage} options={{tabBarIcon:NavbarCommunitiesIcon}}/>
             <BottomTab.Screen name="Profile" component={ProfilePage} options={{tabBarIcon:NavbarProfileIcon}}/>
