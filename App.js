@@ -34,15 +34,9 @@ const UnauthenticatedNavigation = () => (
         <Stack.Screen name="CreateAccount" component={CreateAccountPage} />
     </Stack.Navigator>
 );
-  
-const AppNavigation = () => {
-    const { currentUser } = useAuth();
-    return (
-        <>
-            {currentUser ? <AuthenticatedNavigation /> : <UnauthenticatedNavigation />}
-        </>
-    );
-};
+
+// If the user is authenticated, display the authenticated navigation, otherwise display the unauthenticated navigation
+const AppNavigation = () => useAuth().currentUser ? <AuthenticatedNavigation /> : <UnauthenticatedNavigation />;
 
 export default function App() {
     return (
