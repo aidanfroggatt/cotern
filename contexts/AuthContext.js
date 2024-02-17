@@ -17,14 +17,33 @@ export const AuthProvider = ({ children }) => {
 		return unsubscribe;
 	}, []);
 
-	const signIn = async (email, password) => await signInWithEmailAndPassword(myAuth, email, password).catch(console.error);
-
-	const signOut = async () => await firebaseSignout(myAuth).catch(console.error);
-
+	const signIn = async (email, password) => {
+		try {
+		  	await signInWithEmailAndPassword(myAuth, email, password);
+		  	console.log("User signed in");
+		} catch (error) {
+		  	console.error(error);
+		}
+	};
+	  
+	const signOut = async () => {
+		try {
+			await firebaseSignout(myAuth);
+		  	console.log("User signed out");
+		} catch (error) {
+		  	console.error(error);
+		}
+	};
+	  
 	const signUpEmailAndPassword = async (firstName, lastName, email, password) => {
-		const { user } = await createUserWithEmailAndPassword(myAuth, email, password).catch(console.error);
-		if (!user) return;
-		await setDoc(doc(collection(myFirestore, 'users'), user.uid), { firstName, lastName }).catch(console.error);
+		try {
+			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
+			console.log("Created user!");
+			await setDoc(doc(collection(myFirestore, 'users'), user.uid), { firstName, lastName });
+			console.log("Created user document!");
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	return (

@@ -20,23 +20,19 @@ const ProfilePage = () => {
     const getUserInfo = async (userID) => {
 		try {
 			const userDocSnapshot = await getDoc(doc(collection(myFirestore, 'users'), userID));
-			if (userDocSnapshot.exists()) {
-				return userDocSnapshot.data();
-			} else {
-				console.log("User document does not exist");
-				return null;
-			}
+			return userDocSnapshot.exists() ? userDocSnapshot.data() : null;
 		} catch (error) {
 			console.error("Error fetching user information:", error);
-			return null;
 		}
 	};
 	
 	const handleSignOut = async () => {
-		await signOut()
-			.then(() => console.log('User signed out'))
-			.catch(error => console.error('Error signing out:', error));
-	};
+        try {
+            await signOut();
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
+    };
 
     return (
         <View style={styles.container}>
