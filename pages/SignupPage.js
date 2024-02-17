@@ -26,7 +26,6 @@ const SignupPage = () => {
     const handleCreateAccount = async () => {
 		try {
 			await signUpEmailAndPassword(formData.firstName, formData.lastName, formData.email, formData.password);
-			console.log('User created account!');
 		} catch (error) {
 			console.error('Error creating user:', error);
 		}

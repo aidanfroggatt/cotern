@@ -46,10 +46,9 @@ export const AuthProvider = ({ children }) => {
 			console.log("User document created successfully!");
 
 		} catch (error) {
-			console.error("Error creating user:", error);
+			console.error(error);
 		}
 	};
-	  
 
 	return (
 		<AuthContext.Provider
