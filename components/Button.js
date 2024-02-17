@@ -1,29 +1,12 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { colours } from '../styles/ColoursStyle';
+import { TouchableOpacity, Text } from 'react-native';
 
-const Button = ({ onPress, title, buttonStyle, textStyle }) => {
-  return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
-      <Text style={[styles.text, textStyle]}>{title}</Text>
-    </TouchableOpacity>
-  );
+const Button = ({ onPress, title }) => {
+    return (
+        <TouchableOpacity onPress={onPress} className="py-3 bg-accent mx-7 rounded-xl">
+            <Text className="text-xl font-bold text-center text-primary">{title}</Text>
+        </TouchableOpacity>
+    );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: colours.accent,
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    alignItems: 'center',
-    width: '100%',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
 
 export default Button;

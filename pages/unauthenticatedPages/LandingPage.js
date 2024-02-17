@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, SafeAreaView} from 'react-native';
+import {View, Text, Image, SafeAreaView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Button from "../../components/Button";
+import TextLink from "../../components/TextLink";
 
 const LandingPage = () => {
     const navigation = useNavigation();
@@ -13,14 +15,10 @@ const LandingPage = () => {
                     <Image source={require("../../assets/illustrations/landing-page-illustration.png")} resizeMethod="resize" style={{ width:350, height:350 }}/>
                 </View>
                 <View className="space-y-4">
-                    <TouchableOpacity className="py-3 bg-accent mx-7 rounded-xl" onPress={() => navigation.navigate('CreateAccount')}>
-                        <Text className="text-xl font-bold text-center text-primary">Create Account</Text>
-                    </TouchableOpacity>
+                    <Button onPress={() => navigation.navigate('CreateAccount')} title={"Create Account"}/>
                     <View className="flex-row justify-center">
                         <Text className="text-secondary font-semibold">Already have an account?</Text>
-                        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                            <Text className="font-semibold text-accent"> Login</Text>
-                        </TouchableOpacity>
+                        <TextLink onPress={() => navigation.navigate("Login")} title={"Login"}/>
                     </View>
                 </View>
             </View>
