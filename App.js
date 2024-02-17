@@ -20,6 +20,7 @@ const AuthenticatedNavigation = () => {
                 headerShown: false,
                 tabBarActiveTintColor: "#6366f1",
                 tabBarInactiveTintColor: "#000000",
+                tabBarShowLabel: false,
         }}>
             <BottomTab.Screen name="Home" component={HomePage} options={{tabBarIcon:NavbarHomeIcon}}/>
             <BottomTab.Screen name="Communities" component={CommunitiesPage} options={{tabBarIcon:NavbarCommunitiesIcon}}/>
