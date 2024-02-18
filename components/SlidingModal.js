@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, View, Text, PanResponder, Animated } from 'react-native';
 import TextButton from "./TextButton";
 
-const SlidingModal = ({ modalVisible, toggleModal }) => {
+const SlidingModal = ({ modalVisible, toggleModal, content }) => {
     const [slideAnim] = useState(new Animated.Value(0));
 
     useEffect(() => {
@@ -56,7 +56,7 @@ const SlidingModal = ({ modalVisible, toggleModal }) => {
                 <Animated.View
                     style={{
                         backgroundColor: '#fff',
-                        minHeight: '25%',
+                        minHeight: '30%',
                         borderTopLeftRadius: 20,
                         borderTopRightRadius: 20,
                         padding: 20,
@@ -64,7 +64,7 @@ const SlidingModal = ({ modalVisible, toggleModal }) => {
                         ...panResponder.panHandlers,
                     }}
                 >
-                    <Text>Modal Content</Text>
+                    <Text className="text-center">{content}</Text>
                     <TextButton title="Close" onPress={toggleModal} />
                 </Animated.View>
             </View>

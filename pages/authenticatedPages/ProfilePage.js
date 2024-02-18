@@ -20,6 +20,8 @@ const ProfilePage = () => {
     return userInfo ? (
         <SafeAreaView className="flex-1 bg-primary">
             <View className="flex-1 flex my-4 justify-around">
+                <SlidingModal modalVisible={modalVisible} toggleModal={toggleModal} content={"test"}/>
+
                 <View id="basic-info-container" className="flex-col gap-y-2">
                     <TouchableOpacity onPress={toggleModal}>
                         <View className="flex-row justify-center">
@@ -34,10 +36,6 @@ const ProfilePage = () => {
                         {userInfo.firstName} {userInfo.lastName}
                     </Text>
                 </View>
-
-                <SlidingModal modalVisible={modalVisible} toggleModal={toggleModal}/>
-
-
 
                 <View id="personal-info-container" className="mx-7">
                     <Text className="text-secondary font-semibold text-lg">Personal Information</Text>
