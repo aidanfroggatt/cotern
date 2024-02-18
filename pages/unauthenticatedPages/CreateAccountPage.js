@@ -22,14 +22,6 @@ const CreateAccountPage = () => {
 			[name]: value,
 		});
     };
-
-    const handleCreateAccount = async () => {
-		try {
-			await createAccountEmailAndPassword(formData.firstName, formData.lastName, formData.email, formData.password);
-		} catch (error) {
-			console.error('Error creating user:', error);
-		}
-    };
   
 	return (
 		<SafeAreaView className="flex-1 bg-primary">
@@ -64,7 +56,7 @@ const CreateAccountPage = () => {
 					/>
 				</View>
 				<View className="space-y-4 mx-7">
-					<TextButton onPress={handleCreateAccount} title={"Create Account"}/>
+					<TextButton onPress={() => createAccountEmailAndPassword(formData.firstName, formData.lastName, formData.email, formData.password)} title={"Create Account"}/>
 					<View className="flex-row justify-center">
 						<TextLink onPress={() => navigation.navigate("Login")} title={"Already have an account?"}/>
 					</View>
