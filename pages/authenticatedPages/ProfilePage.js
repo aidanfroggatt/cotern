@@ -35,7 +35,7 @@ const ProfilePage = () => {
                 <View id="utilities-container" className="mx-7">
                     <Text className="text-secondary font-semibold text-lg">Utilities</Text>
                     <View id="card-container" className="flex-col mt-1">
-                        <UtilityCard title={"Settings"} icon={<FontAwesome name="gear" size={24}/>} />
+                        <UtilityCard title={<FontAwesome name="chevron-right" size={12}/>} icon={<FontAwesome name="gear" size={24}/>} />
                     </View>
                 </View>
 
