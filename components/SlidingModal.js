@@ -1,73 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, View, Text, PanResponder, Animated } from 'react-native';
-import TextButton from "./TextButton";
+import React, { useState } from 'react';
+import { TouchableOpacity, Modal, Animated, Dimensions } from 'react-native';
 
-const SlidingModal = ({ modalVisible, toggleModal, content }) => {
-    const [slideAnim] = useState(new Animated.Value(0));
+const SlidingModal = ({ visible, onClose, children }) => {
+    const [backgroundAnimation] = useState(new Animated.Value(0));
+    const [contentAnimation] = useState(new Animated.Value(0));
 
-    useEffect(() => {
-        if (modalVisible) {
-            Animated.timing(slideAnim, {
-                toValue: 1,
-                duration: 300,
-                useNativeDriver: true,
-            }).start();
-        } else {
-            Animated.timing(slideAnim, {
-                toValue: 0,
-                duration: 300,
-                useNativeDriver: true,
-            }).start();
-        }
-    }, [modalVisible]);
-
-    const panResponder = PanResponder.create({
-        onStartShouldSetPanResponder: () => true,
-        onPanResponderMove: (_, gestureState) => {
-            slideAnim.setValue(gestureState.dy / 300); // Adjust 300 as per your need
-        },
-        onPanResponderRelease: (_, gestureState) => {
-            if (gestureState.dy > 100) {
-                toggleModal();
-            } else {
-                Animated.spring(slideAnim, {
-                    toValue: 1,
+    const toggleModal = () => {
+        if (visible) {
+            Animated.parallel([
+                Animated.timing(backgroundAnimation, {
+                    toValue: 0,
+                    duration: 300,
                     useNativeDriver: true,
-                }).start();
-            }
-        },
+                }),
+                Animated.timing(contentAnimation, {
+                    toValue: 0,
+                    duration: 300,
+                    useNativeDriver: true,
+                })
+            ]).start(onClose);
+        } else {
+            Animated.parallel([
+                Animated.timing(backgroundAnimation, {
+                    toValue: 1,
+                    duration: 300,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(contentAnimation, {
+                    toValue: 1,
+                    duration: 500,
+                    useNativeDriver: true,
+                })
+            ]).start();
+        }
+    };
+
+    const backgroundOpacity = backgroundAnimation.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 0.5],
     });
 
-    const translateY = slideAnim.interpolate({
+    const screenHeight = Dimensions.get('window').height;
+    const contentHeight = screenHeight * 0.3; // Minimum 30% of screen height
+
+    const contentTranslateY = contentAnimation.interpolate({
         inputRange: [0, 1],
-        outputRange: [600, 0], // Adjust 600 as per your need
+        outputRange: [contentHeight, 0],
     });
 
     return (
         <Modal
-            animationType="none"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-                toggleModal();
-            }}
+            transparent
+            visible={visible}
+            onRequestClose={onClose}
         >
-            <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', justifyContent: 'flex-end' }}>
-                <Animated.View
-                    style={{
-                        backgroundColor: '#fff',
-                        minHeight: '30%',
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
-                        padding: 20,
-                        transform: [{ translateY }],
-                        ...panResponder.panHandlers,
-                    }}
-                >
-                    <Text className="text-center">{content}</Text>
-                    <TextButton title="Close" onPress={toggleModal} />
-                </Animated.View>
-            </View>
+            <Animated.View
+                style={{
+                    flex: 1,
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    opacity: backgroundOpacity,
+                }}
+            >
+                <TouchableOpacity style={{ flex: 1 }} onPress={toggleModal} />
+            </Animated.View>
+
+            <Animated.View
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    backgroundColor: 'white',
+                    borderTopLeftRadius: 20,
+                    borderTopRightRadius: 20,
+                    height: contentHeight,
+                    transform: [{ translateY: contentTranslateY }],
+                }}
+            >
+                {children}
+            </Animated.View>
         </Modal>
     );
 };
