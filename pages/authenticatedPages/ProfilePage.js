@@ -46,7 +46,6 @@ const ProfilePage = () => {
                    <Text className="text-secondary font-bold text-4xl text-center">
                        {userInfo.firstName} {userInfo.lastName}
                    </Text>
-                   <Text className="text-secondary text-center">Member since: </Text>
                </View>
 
                <View id="personal-info-container" className="mx-7">
