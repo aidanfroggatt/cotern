@@ -10,6 +10,7 @@ import LandingPage from './pages/unauthenticatedPages/LandingPage';
 import ProfilePage from './pages/authenticatedPages/ProfilePage';
 import CommunitiesPage from './pages/authenticatedPages/CommunitiesPage';
 import { NavbarCommunitiesIcon, NavbarHomeIcon, NavbarProfileIcon } from './assets/Icons';
+import {UserProvider} from "./contexts/UserContext";
 const BottomTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -44,7 +45,9 @@ export default function App() {
     return (
         <NavigationContainer>
             <AuthProvider>
-                <AppNavigation/>
+                <UserProvider>
+                    <AppNavigation/>
+                </UserProvider>
             </AuthProvider>
         </NavigationContainer>
     );
