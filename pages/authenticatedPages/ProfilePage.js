@@ -1,27 +1,43 @@
-import React from 'react';
-import {View, Text, SafeAreaView, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import UtilityCard from "../../components/UtilityCard";
 import TextButton from "../../components/TextButton";
 import { useUser } from "../../contexts/UserContext";
 import { useAuth } from "../../contexts/AuthContext";
+import SlidingModal from "../../components/SlidingModal";
 
 const ProfilePage = () => {
 
     const { userInfo } = useUser();
     const { logout } = useAuth();
 
+    const [modalVisible, setModalVisible] = useState(false);
+    const toggleModal = () => {
+        setModalVisible(!modalVisible);
+    };
+
     return userInfo ? (
         <SafeAreaView className="flex-1 bg-primary">
             <View className="flex-1 flex my-4 justify-around">
-                <View id="basic-info-container flex-col">
-                    <View className="flex-row justify-center">
-                        <Image source={require("../../assets/illustrations/female-avatar-illustration.png")} style={{width:100, height:100}}/>
-                    </View>
-                        <Text className="text-secondary font-bold text-4xl text-center">
+                <View id="basic-info-container" className="flex-col gap-y-2">
+                    <TouchableOpacity onPress={toggleModal}>
+                        <View className="flex-row justify-center">
+                            {userInfo.profilePicture ?
+                                <Image source={{ uri: userInfo.profilePicture }} style={{ width: 100, height: 100 }} />
+                                :
+                                <FontAwesome name="user-circle" size={50} />
+                            }
+                        </View>
+                    </TouchableOpacity>
+                    <Text className="text-secondary font-bold text-4xl text-center">
                         {userInfo.firstName} {userInfo.lastName}
                     </Text>
                 </View>
+
+                <SlidingModal modalVisible={modalVisible} toggleModal={toggleModal}/>
+
+
 
                 <View id="personal-info-container" className="mx-7">
                     <Text className="text-secondary font-semibold text-lg">Personal Information</Text>
