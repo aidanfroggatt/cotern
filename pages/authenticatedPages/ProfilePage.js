@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, SafeAreaView, Image} from 'react-native';
+import {View, Text, SafeAreaView, Image } from 'react-native';
 import { useAuth } from '../../contexts/AuthContext';
-import TextButton from '../../components/TextButton';
 import { collection, doc, getDoc } from "firebase/firestore";
 import { myFirestore } from "../../firebaseConfig";
-import TextLink from "../../components/TextLink";
 import { FontAwesome } from '@expo/vector-icons';
 import UtilityCard from "../../components/UtilityCard";
+import TextButton from "../../components/TextButton";
 
 const ProfilePage = () => {
     const { currentUser, logout } = useAuth();
@@ -39,7 +38,7 @@ const ProfilePage = () => {
 
    return userInfo ? (
        <SafeAreaView className="flex-1 bg-primary">
-           <View className="flex-1 flex my-4">
+           <View className="flex-1 flex my-4 justify-between">
                <View className="flex-row justify-center">
                    <Image source={require("../../assets/illustrations/female-avatar-illustration.png")} style={{width:100, height:100}}/>
                </View>
@@ -59,8 +58,10 @@ const ProfilePage = () => {
                    <Text className="text-secondary font-semibold text-lg">Utilities</Text>
                    <View id="card-container" className="flex-col mt-1">
                        <UtilityCard title={"Settings"} icon={<FontAwesome name="gear" size={24}/>} />
-                       <UtilityCard title={"Logout"} icon={<FontAwesome name={"sign-out"} size={24}/>} onPress={handleLogout} />
                    </View>
+               </View>
+               <View className="flex mx-7">
+                   <TextButton title={"Logout"} onPress={handleLogout}/>
                </View>
            </View>
        </SafeAreaView>
