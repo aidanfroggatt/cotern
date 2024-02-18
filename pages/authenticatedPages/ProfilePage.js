@@ -50,8 +50,9 @@ const ProfilePage = () => {
                <View id="personal-info-container" className="m-7">
                    <Text className="text-secondary font-semibold text-lg">Personal Information</Text>
                    <View id="card-container" className="flex-col gap-y-1 mt-1">
-                       <UtilityCard title={"Email"} icon={<FontAwesome name="envelope" size={24}/>} />
-                       <UtilityCard title={"Phone"} icon={<FontAwesome name="phone" size={24}/>} />
+                       <UtilityCard title={currentUser.email || "Email"} icon={<FontAwesome name="envelope" size={24}/>} />
+                       <UtilityCard title={userInfo.phone || "Phone"} icon={<FontAwesome name="phone" size={24}/>} />
+                       <UtilityCard title={userInfo.linekdin || "LinkedIn"} icon={<FontAwesome name="linkedin" size={24}/>} />
                    </View>
                </View>
                <View id="utilities-container" className="m-7">
