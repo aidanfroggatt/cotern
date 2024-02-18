@@ -7,6 +7,7 @@ import { useUser } from "../../contexts/UserContext";
 import { useAuth } from "../../contexts/AuthContext";
 
 const ProfilePage = () => {
+
     const { userInfo } = useUser();
     const { logout } = useAuth();
 

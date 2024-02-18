@@ -6,6 +6,7 @@ import { useAuth } from './AuthContext';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+
     const { currentUser } = useAuth();
     const [userInfo, setUserInfo] = useState(null);
 

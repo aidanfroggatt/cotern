@@ -1,20 +1,20 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { myAuth, myFirestore } from '../firebaseConfig';
-import { signOut as firebaseLogout, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import React, {createContext, useContext, useEffect, useState} from 'react';
+import {myAuth, myFirestore} from '../firebaseConfig';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseLogout} from 'firebase/auth';
+import {collection, doc, serverTimestamp, setDoc} from 'firebase/firestore';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+
 	const [currentUser, setCurrentUser] = useState(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const unsubscribe = myAuth.onAuthStateChanged(user => {
+		return myAuth.onAuthStateChanged(user => {
 			setCurrentUser(user);
 			setLoading(false);
 		});
-		return unsubscribe;
 	}, []);
 
 	const createAccountEmailAndPassword = async (firstName, lastName, email, password) => {

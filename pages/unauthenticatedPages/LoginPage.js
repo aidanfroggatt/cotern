@@ -9,6 +9,7 @@ const LoginPage = () => {
 
     const { loginEmailAndPassword } = useAuth();
     const navigation = useNavigation();
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',

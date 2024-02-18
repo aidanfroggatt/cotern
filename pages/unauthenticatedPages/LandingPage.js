@@ -5,6 +5,7 @@ import TextButton from "../../components/TextButton";
 import TextLink from "../../components/TextLink";
 
 const LandingPage = () => {
+
     const navigation = useNavigation();
 
     return (
