@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { myAuth, myFirestore } from '../firebaseConfig';
 import { signOut as firebaseLogout, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, doc, setDoc } from 'firebase/firestore';
+import { collection, doc, setDoc, serverTimestamp } from 'firebase/firestore';
 
 const AuthContext = createContext();
 
@@ -22,7 +22,13 @@ export const AuthProvider = ({ children }) => {
 			console.log("Creating user with email and password...");
 			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
 			console.log("Created user!");
-			await setDoc(doc(collection(myFirestore, 'users'), user.uid), { firstName, lastName });
+			// Create an object with the user data and timestamp
+			const userData = {
+				firstName,
+				lastName,
+				createdAt: serverTimestamp() // Add createdAt with serverTimestamp
+			};
+			await setDoc(doc(collection(myFirestore, 'users'), user.uid), userData);
 			console.log("Created user document!");
 		} catch (error) {
 			console.error(error);

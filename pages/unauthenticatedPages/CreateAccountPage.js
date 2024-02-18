@@ -9,6 +9,7 @@ const CreateAccountPage = () => {
 
 	const { createAccountEmailAndPassword } = useAuth();
 	const navigation = useNavigation();
+
     const [formData, setFormData] = useState({
 		firstName: '',
 		lastName: '',
