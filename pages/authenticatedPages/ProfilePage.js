@@ -39,7 +39,7 @@ const ProfilePage = () => {
    return userInfo ? (
        <SafeAreaView className="flex-1 bg-primary">
            <View className="flex-1 flex my-4 justify-around">
-               <View id="basic-info-container">
+               <View id="basic-info-container flex-col">
                    <View className="flex-row justify-center">
                        <Image source={require("../../assets/illustrations/female-avatar-illustration.png")} style={{width:100, height:100}}/>
                    </View>
