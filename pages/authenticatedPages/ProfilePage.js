@@ -38,15 +38,18 @@ const ProfilePage = () => {
 
    return userInfo ? (
        <SafeAreaView className="flex-1 bg-primary">
-           <View className="flex-1 flex my-4 justify-between">
-               <View className="flex-row justify-center">
-                   <Image source={require("../../assets/illustrations/female-avatar-illustration.png")} style={{width:100, height:100}}/>
+           <View className="flex-1 flex my-4 justify-around">
+               <View id="basic-info-container">
+                   <View className="flex-row justify-center">
+                       <Image source={require("../../assets/illustrations/female-avatar-illustration.png")} style={{width:100, height:100}}/>
+                   </View>
+                   <Text className="text-secondary font-bold text-4xl text-center">
+                       {userInfo.firstName} {userInfo.lastName}
+                   </Text>
+                   <Text className="text-secondary text-center">Member since: </Text>
                </View>
-               <Text className="text-secondary font-bold text-4xl text-center">
-                   {userInfo.firstName} {userInfo.lastName}
-               </Text>
-               <Text className="text-secondary text-center">Member since: </Text>
-               <View id="personal-info-container" className="m-7">
+
+               <View id="personal-info-container" className="mx-7">
                    <Text className="text-secondary font-semibold text-lg">Personal Information</Text>
                    <View id="card-container" className="flex-col gap-y-1 mt-1">
                        <UtilityCard title={currentUser.email || "Email"} icon={<FontAwesome name="envelope" size={24}/>} />
@@ -54,12 +57,14 @@ const ProfilePage = () => {
                        <UtilityCard title={userInfo.linkedin || "LinkedIn"} icon={<FontAwesome name="linkedin" size={24}/>} />
                    </View>
                </View>
-               <View id="utilities-container" className="m-7">
+
+               <View id="utilities-container" className="mx-7">
                    <Text className="text-secondary font-semibold text-lg">Utilities</Text>
                    <View id="card-container" className="flex-col mt-1">
                        <UtilityCard title={"Settings"} icon={<FontAwesome name="gear" size={24}/>} />
                    </View>
                </View>
+
                <View className="flex mx-7">
                    <TextButton title={"Logout"} onPress={handleLogout}/>
                </View>
