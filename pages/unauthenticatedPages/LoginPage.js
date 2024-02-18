@@ -6,7 +6,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import TextLink from "../../components/TextLink";
 
 const LoginPage = () => {
-
     const { loginEmailAndPassword } = useAuth();
     const navigation = useNavigation();
     const [formData, setFormData] = useState({
@@ -19,14 +18,6 @@ const LoginPage = () => {
             ...formData,
             [name]: value,
         });
-    };
-
-    const handleLogin = async () => {
-        try {
-            await loginEmailAndPassword(formData.email, formData.password);
-        } catch (error) {
-            console.error('Error logging in:', error);
-        }
     };
   
     return (
@@ -50,7 +41,7 @@ const LoginPage = () => {
                     />
                 </View>
                 <View className="space-y-4 mx-7">
-                    <TextButton onPress={handleLogin} title={"Login"}/>
+                    <TextButton onPress={loginEmailAndPassword(formData.email, formData.password)} title={"Login"}/>
                     <View className="flex-row justify-center">
                         <TextLink onPress={() => navigation.navigate("CreateAccount")} title={"Don't have an account?"}/>
                     </View>
