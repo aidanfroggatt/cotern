@@ -19,15 +19,17 @@ const ProfilePage = () => {
             <View className="flex-1 flex my-4 justify-around">
 
                 <View id="basic-info-container" className="flex-col gap-y-2">
-                    <TouchableOpacity onPress={() => setModalVisible(true)}>
-                        <View className="flex-row justify-center">
-                            {userInfo.profilePicture ?
-                                <Image source={{ uri: userInfo.profilePicture }} style={{ width: 100, height: 100 }} />
-                                :
+                    <View className="flex-row justify-center">
+                        {userInfo.profilePicture ?
+                            <TouchableOpacity onPress={() => setModalVisible(true)}>
+                                <Image  source={{ uri: userInfo.profilePicture }} style={{ width: 100, height: 100 }} />
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity onPress={() => setModalVisible(true)}>
                                 <FontAwesome name="user-circle" size={50} />
-                            }
-                        </View>
-                    </TouchableOpacity>
+                            </TouchableOpacity>
+                        }
+                    </View>
                     <Text className="text-secondary font-bold text-4xl text-center">
                         {userInfo.firstName} {userInfo.lastName}
                     </Text>
@@ -53,7 +55,13 @@ const ProfilePage = () => {
                     <TextButton title={"Logout"} onPress={logout}/>
                 </View>
 
-                <SlidingModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
+                <SlidingModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
+                    <View style={{ alignItems: 'center', paddingVertical: 16 }}>
+                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>
+                            Modal Content
+                        </Text>
+                    </View>
+                </SlidingModal>
 
             </View>
         </SafeAreaView>

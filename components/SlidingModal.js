@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Animated, Dimensions, Modal, Text, TouchableOpacity, View } from "react-native";
 
-const SlidingModal = ({ modalVisible, setModalVisible }) => {
+const SlidingModal = ({ children, modalVisible, setModalVisible }) => {
     const [backgroundAnimation] = useState(new Animated.Value(0));
     const [contentAnimation] = useState(new Animated.Value(0));
 
@@ -115,11 +115,7 @@ const SlidingModal = ({ modalVisible, setModalVisible }) => {
                     transform: [{ translateY: contentTranslateY }],
                 }}
             >
-                <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>
-                        Modal Content
-                    </Text>
-                </View>
+                {children}
             </Animated.View>
         </Modal>
     );
