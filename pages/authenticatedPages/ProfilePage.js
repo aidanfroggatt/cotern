@@ -15,8 +15,6 @@ const ProfilePage = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
 
-    const [image, setImage] = useState(null)
-
     const pickImage = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== "granted") {
@@ -24,9 +22,8 @@ const ProfilePage = () => {
         } else {
             const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, allowsEditing: true, aspect: [4, 3], quality: 1 });
             if (!result.canceled) {
-                setImage(result.assets[0].uri);
+                updateUserInfo(userInfo.uid, { profilePicture: result.assets[0].uri });
             }
-            updateUserInfo(userInfo.uid, { profilePicture: result.assets[0].uri });
         }
         setModalVisible(false);
     };
