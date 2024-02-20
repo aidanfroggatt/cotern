@@ -56,7 +56,7 @@ const SlidingModal = ({ children, modalVisible, setModalVisible }) => {
     });
 
     const screenHeight = Dimensions.get('window').height;
-    const contentHeight = screenHeight * 0.3; // Minimum 30% of screen height
+    const contentHeight = screenHeight * 0.25; // Minimum 30% of screen height
 
     const contentTranslateY = contentAnimation.interpolate({
         inputRange: [0, 1],

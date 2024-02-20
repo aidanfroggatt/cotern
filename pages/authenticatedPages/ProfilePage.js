@@ -56,11 +56,10 @@ const ProfilePage = () => {
                 </View>
 
                 <SlidingModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
-                    <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>
-                            Modal Content
-                        </Text>
-                    </View>
+                    <TouchableOpacity className="flex-row p-8 justify-center items-center gap-x-2">
+                        <FontAwesome name={"camera"} size={24}/>
+                        <Text className="text-secondary font-semibold text-lg">Update profile photo</Text>
+                    </TouchableOpacity>
                 </SlidingModal>
 
             </View>
