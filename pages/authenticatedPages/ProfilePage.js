@@ -10,7 +10,7 @@ import * as ImagePicker from "expo-image-picker";
 
 const ProfilePage = () => {
 
-    const { userInfo } = useUser();
+    const { userInfo, updateUserInfo } = useUser();
     const { logout } = useAuth();
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -26,9 +26,10 @@ const ProfilePage = () => {
             if (!result.canceled) {
                 setImage(result.assets[0].uri);
             }
+            updateUserInfo(userInfo.uid, { profilePicture: result.assets[0].uri });
         }
+        setModalVisible(false);
     };
-
 
     return userInfo ? (
         <SafeAreaView className="flex-1 bg-primary">

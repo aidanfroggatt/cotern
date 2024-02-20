@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import {myFirestore} from '../firebaseConfig';
-import {collection, doc, getDoc, setDoc} from 'firebase/firestore';
+import {collection, doc, getDoc, setDoc, updateDoc} from 'firebase/firestore';
 import {useAuth} from './AuthContext';
 
 const UserContext = createContext();
@@ -33,15 +33,23 @@ export const UserProvider = ({ children }) => {
 
     const updateUserInfo = async (userID, updatedUserInfo) => {
         try {
-            await setDoc(doc(collection(myFirestore, 'users'), userID), updatedUserInfo);
+            const userRef = doc(collection(myFirestore, 'users'), userID);
+            await updateDoc(userRef, updatedUserInfo);
             setUserInfo({ ...userInfo, ...updatedUserInfo });
+            console.log("User information updated successfully");
         } catch (error) {
             console.error("Error updating user information:", error);
         }
     }
 
     return (
-        <UserContext.Provider value={{ userInfo }}>
+        <UserContext.Provider
+            value={{
+                userInfo,
+                getUserInfo,
+                updateUserInfo
+            }}
+        >
             {children}
         </UserContext.Provider>
     );
