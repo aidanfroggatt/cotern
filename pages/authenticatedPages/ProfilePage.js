@@ -6,7 +6,6 @@ import TextButton from "../../components/TextButton";
 import {useUser} from "../../contexts/UserContext";
 import {useAuth} from "../../contexts/AuthContext";
 import SlidingModal from "../../components/SlidingModal";
-import colors from "tailwindcss/colors";
 
 const ProfilePage = () => {
 

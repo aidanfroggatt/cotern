@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Image, Alert, TouchableOpacity, StyleSheet, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
-const HomePage = () => {
+const ImageSelector = () => {
     const [image, setImage] = useState(null)
     const [error, setError] = useState(null);
 
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomePage;
+export default ImageSelector;
