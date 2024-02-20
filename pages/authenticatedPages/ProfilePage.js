@@ -25,7 +25,6 @@ const ProfilePage = () => {
                 updateUserInfo(userInfo.uid, { profilePicture: result.assets[0].uri });
             }
         }
-        setModalVisible(false);
     };
 
     return userInfo ? (
