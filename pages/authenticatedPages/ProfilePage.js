@@ -6,6 +6,7 @@ import TextButton from "../../components/TextButton";
 import {useUser} from "../../contexts/UserContext";
 import {useAuth} from "../../contexts/AuthContext";
 import SlidingModal from "../../components/SlidingModal";
+import colors from "tailwindcss/colors";
 
 const ProfilePage = () => {
 
@@ -56,10 +57,9 @@ const ProfilePage = () => {
                 </View>
 
                 <SlidingModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
-                    <TouchableOpacity className="flex-row p-16 justify-center items-center gap-x-2">
-                        <FontAwesome name={"camera"} size={24}/>
-                        <Text className="text-secondary font-semibold text-lg">Update profile photo</Text>
-                    </TouchableOpacity>
+                    <View className="m-8">
+                        <TextButton title={"Update profile photo"}/>
+                    </View>
                 </SlidingModal>
 
             </View>
