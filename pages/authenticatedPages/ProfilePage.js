@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import React, {useState} from 'react';
+import {Image, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {FontAwesome} from '@expo/vector-icons';
 import UtilityCard from "../../components/UtilityCard";
 import TextButton from "../../components/TextButton";
-import { useUser } from "../../contexts/UserContext";
-import { useAuth } from "../../contexts/AuthContext";
+import {useUser} from "../../contexts/UserContext";
+import {useAuth} from "../../contexts/AuthContext";
 import SlidingModal from "../../components/SlidingModal";
 
 const ProfilePage = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, Image, SafeAreaView} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {Image, SafeAreaView, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import TextButton from "../../components/TextButton";
 import TextLink from "../../components/TextLink";
 

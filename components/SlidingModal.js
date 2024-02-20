@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Animated, Dimensions, Modal, TouchableOpacity } from "react-native";
+import React, {useEffect, useState} from 'react';
+import {Animated, Dimensions, Modal, TouchableOpacity} from "react-native";
 
 const SlidingModal = ({ children, modalVisible, setModalVisible }) => {
     const [backgroundAnimation] = useState(new Animated.Value(0));

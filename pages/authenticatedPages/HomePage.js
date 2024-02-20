@@ -1,6 +1,5 @@
 import React from "react";
-import {Text, SafeAreaView} from "react-native";
-import {useUser} from "../../contexts/UserContext";
+import {SafeAreaView, Text} from "react-native";
 
 const HomePage = () => {
 

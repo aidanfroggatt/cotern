@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 const UtilityCard = ({ icon, title, onPress, disabled }) => {
 

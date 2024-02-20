@@ -1,16 +1,17 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
+import {AuthProvider, useAuth} from './contexts/AuthContext';
 import CreateAccountPage from './pages/unauthenticatedPages/CreateAccountPage';
 import LoginPage from './pages/unauthenticatedPages/LoginPage';
 import HomePage from './pages/authenticatedPages/HomePage';
 import LandingPage from './pages/unauthenticatedPages/LandingPage';
 import ProfilePage from './pages/authenticatedPages/ProfilePage';
 import CommunitiesPage from './pages/authenticatedPages/CommunitiesPage';
-import { NavbarCommunitiesIcon, NavbarHomeIcon, NavbarProfileIcon } from './assets/Icons';
+import {NavbarCommunitiesIcon, NavbarHomeIcon, NavbarProfileIcon} from './assets/Icons';
 import {UserProvider} from "./contexts/UserContext";
+
 const BottomTab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 

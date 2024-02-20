@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesome } from '@expo/vector-icons';
+import {FontAwesome} from '@expo/vector-icons';
 
 const ProfileIcon = ({color}) => ( <FontAwesome name="user" size={24} color={color}/> );
 const HomeIcon = ({color}) => ( <FontAwesome name="home" size={24} color={color}/> );
