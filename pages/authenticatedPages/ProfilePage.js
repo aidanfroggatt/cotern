@@ -56,7 +56,7 @@ const ProfilePage = () => {
                 </View>
 
                 <SlidingModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
-                    <TouchableOpacity className="flex-row p-8 justify-center items-center gap-x-2">
+                    <TouchableOpacity className="flex-row p-16 justify-center items-center gap-x-2">
                         <FontAwesome name={"camera"} size={24}/>
                         <Text className="text-secondary font-semibold text-lg">Update profile photo</Text>
                     </TouchableOpacity>
