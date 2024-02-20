@@ -4,7 +4,6 @@ import * as ImagePicker from "expo-image-picker";
 
 const HomePage = () => {
     const [image, setImage] = useState(null)
-    const [uploading, setUploading] = useState(false)
     const [error, setError] = useState(null);
 
     const pickImage = async () => {
