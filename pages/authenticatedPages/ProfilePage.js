@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {Image, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, Image, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {FontAwesome} from '@expo/vector-icons';
 import UtilityCard from "../../components/UtilityCard";
 import TextButton from "../../components/TextButton";
 import {useUser} from "../../contexts/UserContext";
 import {useAuth} from "../../contexts/AuthContext";
 import SlidingModal from "../../components/SlidingModal";
+import * as ImagePicker from "expo-image-picker";
 
 const ProfilePage = () => {
 
@@ -13,6 +14,21 @@ const ProfilePage = () => {
     const { logout } = useAuth();
 
     const [modalVisible, setModalVisible] = useState(false);
+
+    const [image, setImage] = useState(null)
+
+    const pickImage = async () => {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+            Alert.alert("Permission Denied", "Sorry, we need camera roll permission to upload images.");
+        } else {
+            const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ImagePicker.MediaTypeOptions.Images, allowsEditing: true, aspect: [4, 3], quality: 1 });
+            if (!result.canceled) {
+                setImage(result.assets[0].uri);
+            }
+        }
+    };
+
 
     return userInfo ? (
         <SafeAreaView className="flex-1 bg-primary">
@@ -57,7 +73,7 @@ const ProfilePage = () => {
 
                 <SlidingModal modalVisible={modalVisible} setModalVisible={setModalVisible}>
                     <View className="m-8">
-                        <TextButton title={"Update profile photo"}/>
+                        <TextButton title={"Update profile photo"} onPress={pickImage}/>
                     </View>
                 </SlidingModal>
 
