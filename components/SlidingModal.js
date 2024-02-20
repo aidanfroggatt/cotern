@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Animated, Dimensions, Modal, Text, TouchableOpacity, View } from "react-native";
+import { Animated, Dimensions, Modal, TouchableOpacity } from "react-native";
 
 const SlidingModal = ({ children, modalVisible, setModalVisible }) => {
     const [backgroundAnimation] = useState(new Animated.Value(0));
@@ -56,7 +56,7 @@ const SlidingModal = ({ children, modalVisible, setModalVisible }) => {
     });
 
     const screenHeight = Dimensions.get('window').height;
-    const contentHeight = screenHeight * 0.25; // Minimum 30% of screen height
+    const contentHeight = screenHeight * 0.25; // Minimum 25% of screen height
 
     const contentTranslateY = contentAnimation.interpolate({
         inputRange: [0, 1],
