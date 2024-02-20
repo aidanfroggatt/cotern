@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, Image, TouchableOpacity, Modal, Animated, Dimensions } from 'react-native';
+import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import UtilityCard from "../../components/UtilityCard";
 import TextButton from "../../components/TextButton";
