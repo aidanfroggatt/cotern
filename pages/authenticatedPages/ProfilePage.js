@@ -47,7 +47,7 @@ const ProfilePage = () => {
                     <View className="flex-row justify-center">
                         {userInfo.profilePicture ?
                             <TouchableOpacity onPress={() => setModalVisible(true)}>
-                                <Image source={{ uri: userInfo.profilePicture }} style={{ width: 100, height: 100 }} />
+                                <Image source={{ uri: userInfo.profilePicture }} style={{width:100, height:100}} className="rounded-full" />
                             </TouchableOpacity>
                             :
                             <TouchableOpacity onPress={() => setModalVisible(true)}>
