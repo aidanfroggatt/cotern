@@ -1,4 +1,3 @@
-// SlidingModal.js
 import React, { useState, useEffect } from 'react';
 import { Animated, Dimensions, Modal, Text, TouchableOpacity, View } from "react-native";
 
@@ -32,8 +31,19 @@ const SlidingModal = ({ modalVisible, setModalVisible }) => {
                     duration: 300,
                     useNativeDriver: true,
                 })
-            ]).start();
+            ]).start(() => {
+                // Execute this callback after the animation completes
+                // Set modal visibility to false after animation
+                setModalVisible(false);
+            });
         }
+
+        // Cleanup function
+        return () => {
+            // Reset animations
+            backgroundAnimation.setValue(0);
+            contentAnimation.setValue(0);
+        };
     }, [modalVisible]);
 
     const toggleModal = () => {
@@ -53,6 +63,25 @@ const SlidingModal = ({ modalVisible, setModalVisible }) => {
         outputRange: [contentHeight, 0],
     });
 
+    const handleBackgroundPress = () => {
+        // Trigger closing animation
+        Animated.parallel([
+            Animated.timing(backgroundAnimation, {
+                toValue: 0,
+                duration: 300,
+                useNativeDriver: true,
+            }),
+            Animated.timing(contentAnimation, {
+                toValue: 0,
+                duration: 300,
+                useNativeDriver: true,
+            })
+        ]).start(() => {
+            // Set modal visibility to false after animation
+            setModalVisible(false);
+        });
+    };
+
     return (
         <Modal
             transparent
@@ -69,7 +98,7 @@ const SlidingModal = ({ modalVisible, setModalVisible }) => {
                 <TouchableOpacity
                     style={{ flex: 1 }}
                     activeOpacity={1}
-                    onPress={toggleModal}
+                    onPress={handleBackgroundPress} // Handle background press
                 />
             </Animated.View>
 
