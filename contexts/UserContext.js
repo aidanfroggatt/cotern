@@ -36,7 +36,6 @@ export const UserProvider = ({ children }) => {
             const userRef = doc(collection(myFirestore, 'users'), userID);
             await updateDoc(userRef, updatedUserInfo);
             setUserInfo({ ...userInfo, ...updatedUserInfo });
-            console.log("User information updated successfully");
         } catch (error) {
             console.error("Error updating user information:", error);
         }
