@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import TextLink from './../../components/TextLink';
+import TextLink from '../../components/TextLink';
 
 describe('<TextLink />', () => {
     test('renders correctly with provided title', () => {

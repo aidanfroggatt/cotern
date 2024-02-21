@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import UtilityCard from './../../components/UtilityCard';
+import UtilityCard from '../../components/UtilityCard';
 
 describe('<UtilityCard />', () => {
     test('renders correctly with provided icon and title', () => {
