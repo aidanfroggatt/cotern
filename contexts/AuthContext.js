@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import {myAuth, myFirestore} from '../firebaseConfig';
+import {myAuth, myFirestore} from '../firebase.Config';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseLogout} from 'firebase/auth';
 import {collection, doc, serverTimestamp, setDoc} from 'firebase/firestore';
 
