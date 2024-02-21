@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {SafeAreaView, Text, TextInput, View} from 'react-native';
-import TextButton from '../../components/TextButton';
+import TextButton from '../components/TextButton';
 import {useNavigation} from '@react-navigation/native';
-import {useAuth} from '../../contexts/AuthContext';
-import TextLink from "../../components/TextLink";
+import {useAuth} from '../contexts/AuthContext';
+import TextLink from "../components/TextLink";
 
 const CreateAccountPage = () => {
 

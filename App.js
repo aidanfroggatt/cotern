@@ -3,12 +3,12 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AuthProvider, useAuth} from './contexts/AuthContext';
-import CreateAccountPage from './pages/unauthenticatedPages/CreateAccountPage';
-import LoginPage from './pages/unauthenticatedPages/LoginPage';
-import HomePage from './pages/authenticatedPages/HomePage';
-import LandingPage from './pages/unauthenticatedPages/LandingPage';
-import ProfilePage from './pages/authenticatedPages/ProfilePage';
-import CommunitiesPage from './pages/authenticatedPages/CommunitiesPage';
+import CreateAccountPage from './pages/CreateAccountPage';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import LandingPage from './pages/LandingPage';
+import ProfilePage from './pages/ProfilePage';
+import CommunitiesPage from './pages/CommunitiesPage';
 import {NavbarCommunitiesIcon, NavbarHomeIcon, NavbarProfileIcon} from './assets/Icons';
 import {UserProvider} from "./contexts/UserContext";
 
