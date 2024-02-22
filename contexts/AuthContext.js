@@ -17,11 +17,25 @@ export const AuthProvider = ({ children }) => {
 		});
 	}, []);
 
-	const createAccountEmailAndPassword = async (firstName, lastName, email, password) => {
+	const createAccountEmailAndPassword = async ({email, password, firstName, lastName}) => {
 		try {
-			console.log("Creating user with email and password...");
-			const { user } = await createUserWithEmailAndPassword(myAuth, email, password);
-			console.log("Created user!");
+			const { user } = await createAuthenticationEmailAndPassword(email, password);
+			await createUserDocument(user, firstName, lastName);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	const createAuthenticationEmailAndPassword = async (email, password) => {
+		try {
+			return await createUserWithEmailAndPassword(myAuth, email, password);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const createUserDocument = async (user, firstName, lastName) => {
+		try {
 			// Create an object with the user data and timestamp
 			const userData = {
 				firstName,
@@ -33,7 +47,7 @@ export const AuthProvider = ({ children }) => {
 		} catch (error) {
 			console.error(error);
 		}
-	};
+	}
 
 	const loginEmailAndPassword = async (email, password) => {
 		try {
@@ -59,7 +73,9 @@ export const AuthProvider = ({ children }) => {
 				currentUser,
 				loginEmailAndPassword,
 				logout,
-				createAccountEmailAndPassword
+				createAccountEmailAndPassword,
+				createAuthenticationEmailAndPassword,
+				createUserDocument
 			}}>
 			{!loading && children}
 		</AuthContext.Provider>

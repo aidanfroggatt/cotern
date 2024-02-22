@@ -57,7 +57,7 @@ const CreateAccountPage = () => {
 					/>
 				</View>
 				<View className="space-y-4 mx-7">
-					<TextButton onPress={() => createAccountEmailAndPassword(formData.firstName, formData.lastName, formData.email, formData.password)} title={"Create Account"}/>
+					<TextButton onPress={() => createAccountEmailAndPassword({ email: formData.email, password: formData.password, firstName: formData.firstName, lastName: formData.lastName })} title={"Create Account"}/>
 					<View className="flex-row justify-center">
 						<TextLink onPress={() => navigation.navigate("Login")} title={"Already have an account?"}/>
 					</View>
