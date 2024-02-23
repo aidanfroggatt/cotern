@@ -99,8 +99,12 @@ const TestComponent = () => {
             <Text onPress={() => createAccountEmailAndPassword('John', 'Doe', 'test@example.com', 'password123')}>
                 Create Account
             </Text>
-            <Text onPress={() => loginEmailAndPassword('test@example.com', 'password123')}>Login</Text>
-            <Text onPress={() => logout()}>Logout</Text>
+            <Text onPress={() => loginEmailAndPassword('test@example.com', 'password123')}>
+                Login
+            </Text>
+            <Text onPress={() => logout()}>
+                Logout
+            </Text>
         </>
     );
 };
