@@ -2,11 +2,11 @@ import React from 'react';
 import { Text } from 'react-native';
 import { render, waitFor, fireEvent } from '@testing-library/react-native';
 import { AuthProvider, useAuth } from '../../contexts/AuthContext';
-import { myAuth } from '../../firebase.Config';
+import { myAuth } from '../../firebase.config';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 // Mock Firebase functions
-jest.mock('../../firebase.Config', () => ({
+jest.mock('../../firebase.config', () => ({
     myAuth: {
         onAuthStateChanged: jest.fn(),
     },

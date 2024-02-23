@@ -13,7 +13,7 @@ import {
     FIREBASE_STORAGE_BUCKET
 } from "@env";
 
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: FIREBASE_API_KEY,
     authDomain: FIREBASE_AUTH_DOMAIN,
     databaseURL: FIREBASE_DATABASE_URL,
@@ -24,7 +24,7 @@ const firebaseConfig = {
     measurementId: FIREBASE_MEASUREMENT_ID
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 export const myAuth = initializeAuth(app, {
 	persistence: getReactNativePersistence(ReactNativeAsyncStorage)
