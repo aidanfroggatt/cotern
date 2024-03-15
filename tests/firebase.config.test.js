@@ -2,6 +2,16 @@ import { app, firebaseConfig } from '../firebase.config';
 import { initializeAuth} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
+import {
+    FIREBASE_API_KEY,
+    FIREBASE_APP_ID,
+    FIREBASE_AUTH_DOMAIN,
+    FIREBASE_DATABASE_URL,
+    FIREBASE_MEASUREMENT_ID,
+    FIREBASE_MESSAGING_SENDER_ID,
+    FIREBASE_PROJECT_ID,
+    FIREBASE_STORAGE_BUCKET
+} from "@env";
 
 // Mock AsyncStorage
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -27,14 +37,14 @@ jest.mock("firebase/firestore", () => ({
 
 // Mocking environment variables
 const mockEnv = {
-    FIREBASE_API_KEY: "your-api-key",
-    FIREBASE_AUTH_DOMAIN: "your-auth-domain",
-    FIREBASE_DATABASE_URL: "your-database-url",
-    FIREBASE_PROJECT_ID: "your-project-id",
-    FIREBASE_STORAGE_BUCKET: "your-storage-bucket",
-    FIREBASE_MESSAGING_SENDER_ID: "your-messaging-sender-id",
-    FIREBASE_APP_ID: "your-app-id",
-    FIREBASE_MEASUREMENT_ID: "your-measurement-id",
+    apiKey: FIREBASE_API_KEY,
+    authDomain: FIREBASE_AUTH_DOMAIN,
+    databaseURL: FIREBASE_DATABASE_URL,
+    projectId: FIREBASE_PROJECT_ID,
+    storageBucket: FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+    appId: FIREBASE_APP_ID,
+    measurementId: FIREBASE_MEASUREMENT_ID
 };
 
 describe("Firebase Config", () => {
@@ -44,8 +54,9 @@ describe("Firebase Config", () => {
     });
 
     test("should initialize Firebase app", () => {
-        expect(initializeApp).toHaveBeenCalledWith(firebaseConfig);
+        expect(initializeApp).toHaveBeenCalledWith(expect.objectContaining(mockEnv));
     });
+
 
     test("should initialize Firestore", () => {
         expect(getFirestore).toHaveBeenCalledWith(app);
