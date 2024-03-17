@@ -25,7 +25,7 @@ const CreateAccountPage = () => {
     };
   
 	return (
-		<SafeAreaView className="flex-1 bg-primary">
+		<SafeAreaView className="flex-1 bg-primary" testID="create-account-page">
 			<View className="flex-1 flex justify-center my-4">
 				<Text className="text-secondary font-bold text-4xl text-center">Create Account</Text>
 				<View className="flex flex-col gap-y-2 m-7">

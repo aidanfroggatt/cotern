@@ -9,7 +9,7 @@ const LandingPage = () => {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView className="flex-1 bg-primary">
+        <SafeAreaView testID="landing-page" className="flex-1 bg-primary">
             <View className="flex-1 flex justify-around my-4">
                 <Text className="text-secondary font-bold text-4xl text-center">Let's get started</Text>
                 <View className="flex-row justify-center">
