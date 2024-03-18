@@ -23,7 +23,7 @@ const LoginPage = () => {
     };
 
     return (
-        <SafeAreaView className="flex-1 bg-primary">
+        <SafeAreaView testID="login-page" className="flex-1 bg-primary">
             <View className="flex-1 flex justify-center my-4">
                 <Text className="text-secondary font-bold text-4xl text-center">Login</Text>
                 <View className="flex flex-col gap-y-2 m-7">
@@ -43,9 +43,9 @@ const LoginPage = () => {
                     />
                 </View>
                 <View className="space-y-4 mx-7">
-                    <TextButton onPress={() => loginEmailAndPassword(formData.email, formData.password)} title={"Login"}/>
+                    <TextButton onPress={() => loginEmailAndPassword(formData.email, formData.password)} title={"Login"} testID="login-button"/>
                     <View className="flex-row justify-center">
-                        <TextLink onPress={() => navigation.navigate("CreateAccount")} title={"Don't have an account?"}/>
+                        <TextLink onPress={() => navigation.navigate("CreateAccount")} title={"Don't have an account?"} testID="no-account-link"/>
                     </View>
                 </View>
             </View>
